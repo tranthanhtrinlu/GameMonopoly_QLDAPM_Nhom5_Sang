@@ -31,7 +31,6 @@ public class UKBoard implements BoardGetterFunctionality{
             add(new ImageIcon((this.getClass().getResource("/Monopoly_Images_UK/TOP/GO_TO_JAIL.png"))).getImage());
         }};
     }
-
     /**
      * get the left images of the respective board
      * @return ArrayList<Image>, a list of left images
@@ -50,7 +49,6 @@ public class UKBoard implements BoardGetterFunctionality{
             add(new ImageIcon(this.getClass().getResource("/Monopoly_Images_UK/LEFT/PINK1.png")).getImage());
         }};
     }
-
     /**
      * get the bottom images of the respective board
      * @return ArrayList<Image>, a list of bottom images
@@ -71,7 +69,6 @@ public class UKBoard implements BoardGetterFunctionality{
             add(new ImageIcon((this.getClass().getResource("/Monopoly_Images_UK/BOTTOM/GO.png"))).getImage());
         }};
     }
-
     /**
      * get the right images of the respective board
      * @return ArrayList<Image>, a list of right images
@@ -90,7 +87,6 @@ public class UKBoard implements BoardGetterFunctionality{
             add(new ImageIcon(Objects.requireNonNull(this.getClass().getResource("/Monopoly_Images_UK/RIGHT/DARK_BLUE2.png"))).getImage());
         }};
     }
-
     /**
      * get the horizontal bar of the board that separates two images
      * @return Image, the horizontal bar
@@ -99,9 +95,15 @@ public class UKBoard implements BoardGetterFunctionality{
     public Image getHorizontalLine(){
         return new ImageIcon((this.getClass().getResource("/Monopoly_Images_UK/BORDERS/HORIZONTAL_BAR.png"))).getImage();
     }
-
+   
     /**
      * get the vertical bar of the board that separates two images
+     * 
+     * @return Image, the vertical bar
+     */
+    /**
+     * get the vertical bar of the board that separates two images
+     * 
      * @return Image, the vertical bar
      */
     @Override
