@@ -3,48 +3,32 @@
 	<centerMoney>0</centerMoney>
 	<numberOfPlayers>2</numberOfPlayers>
 	<currentTurn>0</currentTurn>
-	<roll1>1</roll1>
-	<roll2>5</roll2>
+	<roll1>3</roll1>
+	<roll2>4</roll2>
 	<player>
 		<typeOfPlayer>User</typeOfPlayer>
-		<moneyAmount>12560000</moneyAmount>
+		<moneyAmount>15000000</moneyAmount>
 		<playerName>1</playerName>
 		<inJail>false</inJail>
 		<turnsInJail>0</turnsInJail>
-		<position>12</position>
-		<currLocation>Telecoms</currLocation>
+		<position>0</position>
+		<currLocation>Go</currLocation>
 		<numOfRailroads>0</numOfRailroads>
-		<numOfUtilities>1</numOfUtilities>
+		<numOfUtilities>0</numOfUtilities>
 		<out>false</out>
 		<ownedProperties>
-			<Location>
-				<Property>
-					<name>Middlesbrough</name>
-					<numberOfHouses>0</numberOfHouses>
-					<oldNumOfHouses>0</oldNumOfHouses>
-				</Property>
-			</Location>
-			<Location>
-				<Utility>
-					<name>Telecoms</name>
-				</Utility>
-			</Location>
 		</ownedProperties>
 		<coloredOwnedProperties>
-			<index>
-				<color>LIGHTBLUE</color>
-				<number>1</number>
-			</index>
 		</coloredOwnedProperties>
 	</player>
 	<player>
 		<typeOfPlayer>User</typeOfPlayer>
-		<moneyAmount>14940000</moneyAmount>
+		<moneyAmount>15000000</moneyAmount>
 		<playerName>1</playerName>
 		<inJail>false</inJail>
 		<turnsInJail>0</turnsInJail>
-		<position>6</position>
-		<currLocation>Middlesbrough</currLocation>
+		<position>0</position>
+		<currLocation>Go</currLocation>
 		<numOfRailroads>0</numOfRailroads>
 		<numOfUtilities>0</numOfUtilities>
 		<out>false</out>

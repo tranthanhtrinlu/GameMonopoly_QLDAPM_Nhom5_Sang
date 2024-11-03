@@ -2,11 +2,8 @@ package Listener;
 import Events.PropertyEvent;
 
 
-
+/**
  * @author Cory Helm
-=======
- * @author emTan
-
  * Interface Listener.PropertyListener that describes the listener for a MVC.Property element.
  */
 public interface PropertyListener {
