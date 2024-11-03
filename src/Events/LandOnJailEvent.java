@@ -1,9 +1,20 @@
 package Events;
+
+
+import Model.BoardElements.LandOnJail;
+import Model.GamePlayer.Player;
+
+import java.util.EventObject;
+
+/**
+ * @author Kareem El-Hajjar
+=======
 import Model.BoardElements.LandOnJail;
 import Model.GamePlayer.Player;
 import java.util.EventObject;
 
 /**
+
  * Class Events.LandOnJailEvent for the event when a player lands on jail. Extends EventObject
  */
 public class LandOnJailEvent extends EventObject {

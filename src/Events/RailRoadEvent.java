@@ -1,9 +1,20 @@
 package Events;
+
+
+import Model.BoardElements.RailRoad;
+import Model.GamePlayer.Player;
+
+import java.util.EventObject;
+
+/**
+ * @author Kareem El-Hajjar
+=======
 import Model.BoardElements.RailRoad;
 import Model.GamePlayer.Player;
 import java.util.EventObject;
 
 /**
+
  * Class Events.RailRoadEvent for defining a railroad event. Extends EventObject
  */
 public class RailRoadEvent extends EventObject {

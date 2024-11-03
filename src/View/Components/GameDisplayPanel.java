@@ -4,7 +4,11 @@ import Model.GamePlayer.Player;
 import Model.GamePlayer.User;
 import View.Components.GamePhotosComponents.BoardGetterFunctionality;
 import View.Components.GamePhotosComponents.UKBoard;
+
+//import View.Components.GamePhotosComponents.USBoard;
+
 import View.Components.GamePhotosComponents.USBoard;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -71,9 +75,12 @@ public class GameDisplayPanel extends JPanel {
      * @param version String, the board version
      * @return BoardGetterFunctionality, the board
      */
-    private BoardGetterFunctionality getBoard(String version){
+
+//        if (version.equals(BoardModel.TypeOfBoards.US.getVersion()))
+//            return new USBoard();
+
         if (version.equals(BoardModel.TypeOfBoards.US.getVersion()))
-            return new USBoard();
+
         return new UKBoard();
     }
 
@@ -212,7 +219,10 @@ public class GameDisplayPanel extends JPanel {
      * @param numberOfPlayers Integer, the total number of players
      */
     public void addInitialPlayers(int num, int numberOfPlayers){
+
+
         String s = "Player "+(num+1);
+
         if (num >= numberOfPlayers){
             int j = num - numberOfPlayers;
             s = "AI"+(j+1);
@@ -229,7 +239,11 @@ public class GameDisplayPanel extends JPanel {
     public void loadInPlayers(Player p, int num, int numberOfPlayers){
         String s;
         if (p instanceof User){
+
+            s = "P"+(num+1);
+
             s = p.getPlayerName() +(num+1);
+
         }else{
             int j = num - numberOfPlayers;
             s = "AI"+(j+1);
@@ -244,8 +258,10 @@ public class GameDisplayPanel extends JPanel {
      * @param name String, the Player's name on the board
      */
     private void addPlayerPieceOnBoard(int index, int position, String name){
-        this.playerPieces.add(new JLabel(name));
+       this.playerPieces.get(index).setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+
         this.playerPieces.get(index).setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
+
         this.playerPieces.get(index).setFont(new Font("Verdana", Font.BOLD, 12));
         this.playerPieces.get(index).setForeground(Color.BLACK);
         this.playerPiecesDisplay.get(position).add(this.playerPieces.get(index));
