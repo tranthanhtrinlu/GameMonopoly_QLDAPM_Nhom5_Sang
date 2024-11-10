@@ -18,14 +18,13 @@ import java.io.*;
 import java.util.*;
 
 /**
- * @author Tony Massaad
- * Class  that acts as the model for the Monopoly game. Essentially sets up the game and board as a whole.
+ * Lớp đại diện cho mô hình trò chơi Monopoly. Thiết lập trò chơi và bàn cờ.
  */
 public class BoardModel {
     public static final int MAX_PLAYERS = 4;
-    public static final int SIZE_OF_BOARD = 39; // 0-39 inclusive
+    public static final int SIZE_OF_BOARD = 39; // từ 0 đến 39
     public static final int GO_MONEY = 200;
-    public static final int JAIL_POSITION = 10; // 11 - 1
+    public static final int JAIL_POSITION = 10; // vị trí nhà tù là 11 - 1
     public static final int TOTAL_UTILITIES = 2;
     private static final int ROLLING_DICE_DELAY = 10;
     public static final String STARTING_POSITION = "Go";
@@ -43,14 +42,15 @@ public class BoardModel {
     private String version;
 
     /**
-     * Color constants for the Board
+     * Định nghĩa các màu cho bàn cờ
      */
     public enum Color{
         BROWN, LIGHTBLUE, PURPLE, ORANGE, RED, YELLOW, GREEN, DARKBLUE, NONE
     }
 
+    
     /**
-     * Enum for constant strings on loading and saving xml
+     * Enum cho các chuỗi đại diện trong XML khi tải và lưu
      */
     public enum StringRepresentationOfXML{
         JAR_SAVED("./savedFile.xml"), JAR_LOAD_UK("./UKBoardModel.xml"), JAR_LOAD_US("./NewBoardModel.xml"),
@@ -75,15 +75,15 @@ public class BoardModel {
         }
     }
 
-    /**
-     * Status Constant of the Game.
+  /**
+     * Trạng thái của trò chơi
      */
     public enum Status{
         FINISHED, UNFINISHED
     }
 
-    /**
-     * The type of boards board model can play
+       /**
+     * Các loại bàn cờ mà BoardModel có thể chơi
      */
     public enum TypeOfBoards{
         UK("UK"), US("US");
@@ -94,58 +94,52 @@ public class BoardModel {
         }
 
         /**
-         * get the version of the game as string
-         * @return String, the version
+         * Lấy phiên bản của trò chơi dưới dạng chuỗi
          */
         public String getVersion() {
             return this.version;
         }
     }
 
-    /**
-     * Constants for handling player choice throughout the game
+     /**
+     * Các lựa chọn của người chơi trong suốt trò chơi
      */
     public enum PlayerChoice{
         ROLL(1), QUIT(2), PASS(3), PAY_OUT(4), ROLL_OUT(5), BUY_HOUSE(6), SELL_HOUSE(7), SAVE(8), SAVE_QUIT(9);
 
         private final int choice;
 
-        /**
-         * Constructor for player choice
-         * @param choice Integer, the choice
+         /**
+         * Constructor cho các lựa chọn của người chơi
+         * @param choice Số nguyên, lựa chọn
          */
         PlayerChoice(int choice){
             this.choice = choice;
         }
 
-        /**
-         * getter method to get the choice
-         * @return Integer, the choice
-         */
+
         public int getChoice() {
             return choice;
         }
     }
 
     /**
-     * constants for what announcements the view should handle
+     * Các thông báo khi chuyển lượt cho người chơi tiếp theo
      */
     public enum nextPlayerTurnAnnouncements{
         ROLL_AGAIN, ROLL_OUT, PAY_OUT, PASS, NONE
     }
 
-    /**
-     * Default constructor for the BoardModel.
-     */
+
     public BoardModel(){
          this(0,0,0);
     }
 
-    /**
-     * Constructor for BoardModel
-     * @param currentTurn Integer, the current turn
-     * @param roll1 Integer, the first roll the game is on
-     * @param roll2 Integer, the second roll the game is on
+     /**
+     * Constructor cho BoardModel
+     * @param currentTurn Lượt hiện tại
+     * @param roll1 Kết quả lần tung xúc xắc thứ nhất
+     * @param roll2 Kết quả lần tung xúc xắc thứ hai
      */
     public BoardModel(int currentTurn, int roll1, int roll2) {
         this.gamePlayers = new ArrayList<>();
@@ -160,24 +154,18 @@ public class BoardModel {
     }
 
 
-    /**
-     * set the version of the game
-     * @param version String, the version
-     */
+
     public void setGameVersion(String version){
         this.version = version;
     }
 
-    /**
-     * Getter for getting the game version
-     * @return String, the game version
-     */
+
     public String getGameVersion(){
         return this.version;
     }
 
     /**
-     * gets how much money is in the center
+     * nhận được bao nhiêu tiền ở trung tâm
      * @return Integer centerMoney
      */
     public static int getCenterMoney() {
@@ -185,96 +173,75 @@ public class BoardModel {
     }
 
     /**
-     * will set centerMoney
-     * @param centerMoney Integer money in center
+     * đặt bao nhiêu tiền
+     * @param centerMoney 
      */
     public static void setCenterMoney(int centerMoney) {
         BoardModel.centerMoney = centerMoney;
     }
 
-    /**
-     * used to add money to the center
-     * @param add Integer added
-     */
+
     public static void addToCenterMoney(int add){
         BoardModel.centerMoney += add;
     }
 
 
     /**
-     * add players to the game
+     * add người chơi
      * @param player Player, the player
      */
     public void addGamePlayers(Player player) {
         this.gamePlayers.add(player);
     }
 
-    /**
-     * get the number of players in the game
-     * @return Integer, the number of players
-     */
     public int getNumberOfPlayers() {
         return this.gamePlayers.size();
     }
 
-    /**
-     * gets the size of the board
-     * @return Integer, size
-     */
+
     public int getSizeOfBoard(){return this.board.size();}
 
     /**
-     * get the integer value of the first dice roll
-     * @return Integer, the first dice roll
+     * lấy giá trị của lần tung xúc xắc đầu tiên
+     * @return Integer
      */
     public int getRoll1() {
         return this.roll1;
     }
 
     /**
-     * get the integer value of the second dice roll
-     * @return Integer, the second dice roll
+     * lấy giá trị của lần tung xúc xắc lần thứ 2
+     * @return Integer,
      */
     public int getRoll2() {
         return this.roll2;
     }
 
     /**
-     * get the true number of players in the game (player's who out attribute it false)
-     * @return Integer, the true number of players
+     * lấy số lượng người chơi thực sự trong trò chơi 
+     * @return Integer
      */
     public int getNumOfPlayers() {
         return this.numberOfPlayers;
     }
 
-    /**
-     * Get the player by index
-     * @param i Integer, the index
-     * @return Player, the player
-     */
+
     public Player getPlayersByIndex(int i) {
         return this.gamePlayers.get(i);
     }
 
-    /**
-     * set the number of players in the game
-     * @param num Integer, the number
-     */
     public void setNumberOfPlayers(int num){
         this.numberOfPlayers = num;
     }
 
-    /**
-     * Getter for the current turn.
-     * @return Integer currentTurn
-     */
+
     public int getCurrentTurn() {
         return currentTurn;
     }
 
     /**
-     * Boolean method for determining whether a player has rolled doubles.
-     * @return True if doubles are rolled, false otherwise.
+     * xác định xem người chơi đã nhân đôi hay chưa
+     * @return Đúng nếu nhân đôi được tung ra, ngược lại là sai.
      */
     private boolean rollDiceOfTwo(){
         Random r = new Random();
@@ -284,16 +251,16 @@ public class BoardModel {
     }
 
     /**
-     * Method for adding a Listener.BoardView object to the ArrayList of BoardViews.
-     * @param view A Listener.BoardView object view.
+     * Phương thức thêm đối tượng Listener.BoardView vào ArrayList của BoardViews.
+     * @param view 
      */
     public void addView(BoardView view){
         this.views.add(view);
     }
 
-    /**
-     * Method for initializing the board. Adds all necessary elements, including properties, railroads and utilities.
-     * @param path String, the file path
+     /**
+     * Phương thức khởi tạo bàn cờ. Thêm tất cả các phần tử cần thiết bao gồm các tài sản, đường sắt và tiện ích.
+     * @param path Chuỗi, đường dẫn tệp
      */
     public boolean initializeBoard(String path){
         try{
@@ -317,8 +284,8 @@ public class BoardModel {
     }
 
     /**
-     * given the node element, add Location to the board according to the node
-     * @param node Node, the node element of Location
+     * Dựa vào phần tử node, thêm Location vào bảng cờ dựa trên thông tin của node
+     * @param node Node, phần tử node của Location
      */
     private void parseAndAddDataLocationToBoard(Node node){
         switch (node.getNodeName()) {
@@ -359,8 +326,8 @@ public class BoardModel {
 
 
     /**
-     * Method that loops through the board list and adds all the listeners to each.
-     * @param view A Listener.BoardView view.
+     * Phương thức duyệt qua danh sách board và thêm tất cả listener vào mỗi vị trí.
+     * @param view Đối tượng Listener.BoardView
      */
     public void addViewToListener(BoardView view){
         for (Location location : this.board){
@@ -368,9 +335,9 @@ public class BoardModel {
         }
     }
 
-    /**
-     * method for handling the next turn of the player.
-     */
+   /**
+ * Phương thức xử lý lượt tiếp theo của người chơi.
+ */
     public void nextTurn() {
         this.currentTurn++;
         while (true){
@@ -385,10 +352,10 @@ public class BoardModel {
         }
     }
 
-    /**
-     * Overridden boolean method for updating the game players if one loses the game or quits.
-     * @return True if the game players is updated, false otherwise.
-     */
+   /**
+ * Phương thức cập nhật danh sách người chơi nếu một người chơi thua hoặc bỏ cuộc.
+ * @return True nếu danh sách người chơi được cập nhật, ngược lại là False.
+ */
     public boolean checkBankrupt() {
         Player p = this.gamePlayers.get(this.currentTurn);
         if (p.getMoneyAmount() == 0){
@@ -398,13 +365,10 @@ public class BoardModel {
         return false;
     }
 
-    /**
-     * Remove the current player of the game
-     * set the player out attribute to true
-     * bankrupt the player and move to the next turn
-     * if the status checks the next player is the last, announce winner
-     * otherwise reduce the number of players by 1
-     */
+  /**
+ * Xóa người chơi hiện tại khỏi trò chơi, đặt thuộc tính "out" cho người chơi,
+ * chuyển sang lượt tiếp theo, nếu chỉ còn một người chơi thì thông báo người thắng.
+ */
     private void removePlayer(){
         Player p = this.gamePlayers.get(this.currentTurn);
         p.setOut(true);
@@ -414,29 +378,25 @@ public class BoardModel {
         updateStatus();
     }
 
-    /**
-     * get the current status
-     * @return Status, the status
-     */
+
     public Status getStatus() {
         return this.status;
     }
 
     /**
-     * check if there is a winner
-     * if winner, change the status to finished
-     * otherwise not
-     */
+ * Kiểm tra xem có người thắng hay chưa. Nếu có, chuyển trạng thái thành "FINISHED".
+ */
     public void updateStatus(){
         if (this.numberOfPlayers == 1){
             this.status = Status.FINISHED;
         }
     }
 
-    /**
-     * If the current player turn is the AI, AI rolls if they are not in jail, otherwise try to roll double
-     * @return boolean, true if AI otherwise false
-     */
+  /**
+ * Nếu người chơi hiện tại là AI, AI sẽ tung xúc xắc nếu không bị giam,
+ * ngược lại sẽ thử tung xúc xắc đôi.
+ * @return boolean, true nếu là AI, ngược lại là false
+ */
     private boolean playAI(){
         Player p = this.gamePlayers.get(this.currentTurn);
         if(p instanceof AI){
@@ -446,10 +406,10 @@ public class BoardModel {
         return false;
     }
 
-    /**
-     * handle what happens to the player view if it's the AI's turn or not
-     * if it is the AI's turn, the play buttons are disabled, otherwise enabled and updated
-     */
+   /**
+ * Xử lý xem lượt hiện tại có phải của AI không. Nếu là AI thì vô hiệu hóa nút chơi,
+ * ngược lại kích hoạt và cập nhật.
+ */
     private void handleIfAITurn(){
         if(!playAI()){
             for (BoardView view : views){
@@ -459,12 +419,12 @@ public class BoardModel {
         }
     }
 
-    /**
-     * Get the type of announcement to display to the view depending on what happens
-     * @param view BoardView, the current view
-     * @param announcement nextPlayerTurnAnnouncements, the announcement handler
-     * @param e BoardEvent, the events occurring in the BoardModel
-     */
+  /**
+ * Lấy loại thông báo hiển thị cho người xem dựa trên sự kiện
+ * @param view BoardView, người xem hiện tại
+ * @param announcement nextPlayerTurnAnnouncements, trình xử lý thông báo
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ */
     private void getTypeOfViewAnnouncement(BoardView view, nextPlayerTurnAnnouncements announcement, BoardEvent e){
         switch(announcement){
             case ROLL_AGAIN:
@@ -484,10 +444,10 @@ public class BoardModel {
         }
     }
 
-    /**
-     * handle the bankruptcy functionality for when a player is bankrupted
-     * @param e BoardEvent, the event occurring in the BoardModel
-     */
+  /**
+ * Phương thức xử lý khi người chơi bị phá sản.
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ */
     private void handleBankruptcy(BoardEvent e){
         for (BoardView view : views){
             view.handleAnnounceBankruptedPlayer(e.getPlayer());
@@ -504,10 +464,10 @@ public class BoardModel {
     }
 
     /**
-     * handle the transition to the next player with the respective announcements of the current player result
-     * @param e BoardEvent, the events occurring in the BoardModel
-     * @param announcements nextPlayerTurnAnnouncements, the announcement of the current player result
-     */
+ * Xử lý chuyển sang lượt người chơi tiếp theo và thông báo kết quả của người chơi hiện tại.
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ * @param announcements nextPlayerTurnAnnouncements, thông báo về kết quả của người chơi hiện tại
+ */
     private void handleTransitionToNextPlayerTurn(BoardEvent e, nextPlayerTurnAnnouncements announcements){
         nextTurn();
         for (BoardView view : views){
@@ -520,9 +480,9 @@ public class BoardModel {
     }
 
     /**
-     * handler for when the player rolls doubles and can roll again
-     * @param e BoardEvent, the events occurring in the BoardModel
-     */
+ * Xử lý khi người chơi tung xúc xắc đôi và có thể chơi lại
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ */
     private void handlePlayerPlayAgainAnnouncement(BoardEvent e){
         for (BoardView view : views){
             getTypeOfViewAnnouncement(view, nextPlayerTurnAnnouncements.ROLL_AGAIN, e);
@@ -531,10 +491,10 @@ public class BoardModel {
         handleIfAITurn();
     }
 
-    /**
-     * handler for when the player quits the game
-     * @param e BoardEvent, the events occurring in the BoardModel
-     */
+   /**
+ * Xử lý khi người chơi bỏ cuộc
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ */
     private void handlePlayerQuit(BoardEvent e){
         removePlayer();
         for (BoardView view : this.views){
@@ -549,10 +509,10 @@ public class BoardModel {
         handleIfAITurn();
     }
 
-    /**
-     * handler for when the player pays out of Jail
-     * @param e BoardEvent, the events occurring in the BoardModel
-     */
+ /**
+ * Xử lý khi người chơi trả tiền để ra khỏi tù
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ */
     private void handlePlayerPayingOutOfJail(BoardEvent e){
         Player p = e.getPlayer();
         Location place = e.boardElementByIndex(p.getPosition());
@@ -564,10 +524,10 @@ public class BoardModel {
         handleTransitionToNextPlayerTurn(e, nextPlayerTurnAnnouncements.PAY_OUT);
     }
 
-    /**
-     * Handler for when the player chooses to purchase houses
-     * @param e BoardEvent, the events occurring the BoardModel
-     */
+   /**
+ * Xử lý khi người chơi chọn mua nhà
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ */
     private void handleBuyingOfHouses(BoardEvent e){
         for (BoardView view : this.views){
             view.handlePlayerChoiceToPurchaseHouses(e);
@@ -577,9 +537,9 @@ public class BoardModel {
     }
 
     /**
-     * handler for when the player chooses to sell houses
-     * @param e BoardEvent, the events occurring the BoardModel
-     */
+ * Xử lý khi người chơi chọn bán nhà
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ */
     private void handleSellingOfHouses(BoardEvent e){
         for (BoardView view : this.views){
             view.handlePlayerChoiceToSellHouses(e);
@@ -588,14 +548,13 @@ public class BoardModel {
         }
     }
 
-    /**
-     * Handler for when the player rolls
-     * displays the movement of player
-     * operates the property landed functionality, and run the state of the game accordingly
-     * If player is bankrupted, handle bankruptcy method
-     * otherwise if not doubles, move to next player, otherwise play again if not in jail else move to next player
-     * @param e BoardEvent, the events occurring in the BoardModel
-     */
+   /**
+ * Xử lý khi người chơi tung xúc xắc, hiển thị chuyển động của người chơi, 
+ * vận hành chức năng của vị trí đến, và chạy trạng thái của trò chơi tương ứng.
+ * Nếu người chơi bị phá sản, xử lý bằng phương thức phá sản,
+ * nếu không thì chuyển lượt sang người tiếp theo hoặc cho phép chơi lại nếu không ở trong tù.
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ */
     private void movePlayerFunctionality(BoardEvent e){
         Timer timer2 = new Timer();
         timer2.schedule(new TimerTask() {
@@ -645,13 +604,11 @@ public class BoardModel {
             }
         }, 0, 200);
     }
-
-    /**
-     * Handler for when the player attempts to roll out of jail
-     * if the player rolls doubles, announce and run the movePlayerFunctionality method
-     * otherwise, handle the in jail functionality accordingly
-     * @param e BoardEvent, the event
-     */
+/**
+ * Xử lý khi người chơi cố gắng tung xúc xắc để ra khỏi tù.
+ * Nếu người chơi tung xúc xắc đôi, thông báo và thực hiện di chuyển, ngược lại xử lý ở tù.
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ */
     private void rollingOutOfJailFunctionality(BoardEvent e){
         if (e.getDoubles()){
             e.getPlayer().setInJail(false);
@@ -673,13 +630,13 @@ public class BoardModel {
         }
     }
 
-    /**
-     * handler for when the player rolls in general
-     * animation for rolling
-     * if player rolls, run movePlayerFunctionality. Otherwise, run rollingOutOfJailFunctionality
-     * @param e BoardEvent, the events occurring in the BoardModel
-     * @param choice Integer, the player choice
-     */
+   /**
+ * Xử lý khi người chơi tung xúc xắc chung
+ * Hiển thị hoạt ảnh tung xúc xắc
+ * Nếu người chơi tung xúc xắc, chạy phương thức movePlayerFunctionality. Ngược lại, chạy rollingOutOfJailFunctionality
+ * @param e BoardEvent, sự kiện xảy ra trong BoardModel
+ * @param choice Integer, lựa chọn của người chơi
+ */
     private void handleRollingDice(BoardEvent e, int choice){
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {
@@ -711,10 +668,10 @@ public class BoardModel {
         }, 0, 200);
     }
 
-    /**
-     * handler for when the player decides to save the game.
-     * @param filename String, the name of the file to save the information in
-     */
+  /**
+ * Xử lý khi người chơi quyết định lưu trò chơi.
+ * @param filename String, tên của tệp để lưu thông tin
+ */
     private boolean handleSaveToXML(String filename){
         try{
             File save = new File(filename);
@@ -728,10 +685,10 @@ public class BoardModel {
         }
     }
 
-    /**
-     * returns an XML representation of the board model as a singular string
-     * @return str, the string containing the XML representation of this board model
-     */
+  /**
+ * Trả về biểu diễn dưới dạng XML của mô hình bàn cờ dưới dạng chuỗi duy nhất
+ * @return str, chuỗi chứa biểu diễn XML của mô hình bàn cờ này
+ */
     private String toXML(){
         String str = "<boardModel>\n";
         str += "\t<version>" + this.version + "</version>\n";
@@ -753,17 +710,17 @@ public class BoardModel {
     }
 
     /**
-     * create the board according to the version of the board model specified
-     */
+ * Tạo bàn cờ dựa trên phiên bản mô hình bàn cờ đã được chỉ định
+ */
     public void createBoard() {
         if (!initializeBoard(getVersionTypeJar()))
             initializeBoard(getVersionType());
     }
 
     /**
-     * Get the version path in JAR file
-     * @return String, the path
-     */
+ * Lấy đường dẫn phiên bản trong tệp JAR
+ * @return String, đường dẫn
+ */
     private String getVersionTypeJar(){
         if (this.version.equals(TypeOfBoards.US.getVersion())){
             return StringRepresentationOfXML.JAR_LOAD_US.getPath();
@@ -771,10 +728,10 @@ public class BoardModel {
         return StringRepresentationOfXML.JAR_LOAD_UK.getPath();
     }
 
-    /**
-     * get the version path in IDE
-     * @return String, the path
-     */
+  /**
+ * Lấy đường dẫn phiên bản trong IDE
+ * @return String, đường dẫn
+ */
     private String getVersionType(){
         if (this.version.equals(TypeOfBoards.US.getVersion())){
             return StringRepresentationOfXML.LOAD_US.getPath();
@@ -783,11 +740,11 @@ public class BoardModel {
     }
 
     /**
-     * Initialize the board model given the document parsed
-     * @param doc Document, the xml document parsed
-     * @throws ParserConfigurationException Throw parser exception if parsing causes error
-     * @throws SAXException Throw sax exception if saxing causes error
-     * @throws IOException Throw IO exception if IO causes error
+     * Khởi tạo mô hình bàn cờ với tài liệu XML đã phân tích cú pháp
+     * @param doc Document, tài liệu XML đã phân tích cú pháp
+     * @throws ParserConfigurationException Ném ngoại lệ nếu có lỗi phân tích cú pháp
+     * @throws SAXException Ném ngoại lệ nếu có lỗi SAX
+     * @throws IOException Ném ngoại lệ nếu có lỗi IO
      */
     private void initializeLoadedBoardModel(Document doc) throws IOException, SAXException, ParserConfigurationException {
         String version = doc.getElementsByTagName("version").item(0).getTextContent();
@@ -805,10 +762,10 @@ public class BoardModel {
         createBoard();
     }
 
-    /**
-     * Load a saved path XML specified by the player in the Game menu
-     * @param path String, the file path
-     */
+   /**
+ * Tải một tệp XML đã lưu được chỉ định bởi người chơi trong menu trò chơi
+ * @param path String, đường dẫn tệp
+ */
     public boolean loadSavedXML(String path) {
         try{
             Player p;
@@ -835,15 +792,19 @@ public class BoardModel {
             return false;
         }
     }
-
+/**
+ * Xử lý lưu trò chơi vào tệp XML. Nếu không lưu được tại đường dẫn mặc định, sẽ lưu vào đường dẫn dự phòng.
+ */
     private void handleSavedFunctionality(){
         if (!handleSaveToXML(StringRepresentationOfXML.SAVED.getPath()))
             handleSaveToXML(StringRepresentationOfXML.JAR_SAVED.getPath());
     }
 
-    /**
-     * Method for simulating the player's turn depending on numerous scenarios. Rolls the dice and determines whether the player is in jail. Gives choices on whether to move, pass, or quit the game.
-     */
+   /**
+ * Phương thức mô phỏng lượt chơi của người chơi dựa trên nhiều tình huống. Tung xúc xắc và xác định xem người chơi có ở trong tù không.
+ * Đưa ra các lựa chọn cho người chơi như di chuyển, bỏ lượt hoặc thoát trò chơi.
+ * @param choice Lựa chọn của người chơi
+ */
     public void playCurrPlayerTurn(int choice){
         boolean doubles = rollDiceOfTwo();
         BoardEvent e = new BoardEvent(this, this.board, doubles, this.roll1, this.roll2, this.gamePlayers.get(this.currentTurn), this.currentTurn, this.gamePlayers);

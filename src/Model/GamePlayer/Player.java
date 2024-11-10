@@ -1,10 +1,9 @@
 package Model.GamePlayer;
-
-import Model.BoardElements.Location;
-import Model.BoardElements.Property;
 import Model.BoardElements.RailRoad;
 import Model.BoardElements.Utility;
 import Model.BoardModel;
+import Model.BoardElements.Location;
+import Model.BoardElements.Property;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -14,10 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * @author Tony Massaad
- * Class MVC.Player that defines the attributes of a player in the Monopoly game.
+ * Lớp Player định nghĩa các thuộc tính của một người chơi trong trò chơi Monopoly.
  */
-public abstract class Player {
+public abstract class Player{
     private final String playerName;
     private int moneyAmount;
     private boolean inJail;
@@ -30,15 +28,12 @@ public abstract class Player {
     private HashMap<BoardModel.Color, Integer> ownedPropertiesBasedOnColors;
     private List<Location> ownedProperties;
 
-    /**
-     *  MVC.Player default constructor
-     * @param name String player name
-     */
+
     public Player(String name, int moneyAmount){
         this(name, moneyAmount, false, 0, false, 0, BoardModel.STARTING_POSITION, 0,0);
     }
 
-    public Player(String playerName, int moneyAmount, boolean out, int position, boolean inJail, int turnsInJail, String currLocation, int numOfRailroads, int numOfUtilities){
+    public Player(String playerName, int moneyAmount, boolean out,  int position, boolean inJail, int turnsInJail, String currLocation, int numOfRailroads, int numOfUtilities){
         this.playerName = playerName;
         this.moneyAmount = moneyAmount;
         this.out = out;
@@ -52,42 +47,30 @@ public abstract class Player {
         this.ownedProperties = new ArrayList<>();
     }
 
-    /**
-     * set the player out if they quit or are bankrupted
-     * @param out boolean
-     */
+
     public void setOut(boolean out) {
         this.out = out;
     }
 
-    /**
-     * get the player attribute out
-     * @return boolean
-     */
+
     public boolean getOut(){
         return this.out;
     }
 
-    /**
-     * setter method for setting the player position
-     * @param position Integer
-     */
+
     public void setPosition(int position){
         this.position = position;
     }
 
-    /**
-     * Setter method for setting the current location
-     * @param currLocation A String currLocation
-     */
+
     public void setCurrLocation(String currLocation) {
         this.currLocation = currLocation;
     }
 
     /**
-     * used to move the character around the board
-     * @param combinedRolls Integer of dice rolled
-     * @return True if player is moved, false otherwise
+     * Di chuyển người chơi trên bàn cờ
+     * @param combinedRolls Tổng số xúc xắc đã tung
+     * @return True nếu người chơi được di chuyển, ngược lại là false
      */
     public boolean movePlayer(int combinedRolls){
         this.position += combinedRolls;
@@ -100,10 +83,10 @@ public abstract class Player {
     }
 
     /**
-     * get the total sum of movements the player would move with dice dum
-     * @param pos Integer, hypothetical position
-     * @param sum Integer, the sum of dice
-     * @return Integer, the new position
+     * Tính toán vị trí mới của người chơi dựa trên vị trí hiện tại và tổng số xúc xắc
+     * @param pos Integer, vị trí giả định
+     * @param sum Integer, tổng số xúc xắc
+     * @return Integer, vị trí mới
      */
     public int getSumOfMovement(int pos, int sum){
         pos += sum;
@@ -113,9 +96,9 @@ public abstract class Player {
         return pos;
     }
 
-    /**
-     * sets the player in jail
-     * @param inJail boolean in jail or not
+     /**
+     * Đặt trạng thái của người chơi có vào tù không
+     * @param inJail boolean có vào tù hay không
      */
     public void setInJail(boolean inJail) {
         this.inJail = inJail;
@@ -126,95 +109,75 @@ public abstract class Player {
     }
 
     /**
-     * Getter method for getting the turns in jail
-     * @return An integer amount of turns
+     * Lấy số lượt còn lại trong tù của người chơi
+     * @return Integer, số lượt
      */
     public int getTurnsInJail(){
         return this.turnsInJail;
     }
 
-    /**
-     * Setter method for setting the number of turns in jail
-     * @param val An integer val
+      /**
+     * Đặt số lượt còn lại trong tù của người chơi
+     * @param val Integer, số lượt
      */
     public void setTurnsInJail(int val){
         this.turnsInJail = val;
     }
 
-    /**
-     * Getter method for getting a boolean that describes if a player is in jail
-     * @return A boolean inJail
+   /**
+     * Kiểm tra xem người chơi có ở trong tù không
+     * @return boolean, trạng thái có ở tù
      */
     public boolean getInJail(){
         return this.inJail;
     }
 
-    /**
-     * Getter for getting the player name
-     * @return A string name
-     */
+
     public String getPlayerName() {
         return this.playerName;
     }
 
-    /**
-     * Getter for getting the money amount of the player
-     * @return An integer moneyAmount
-     */
+
     public int getMoneyAmount() {
         return this.moneyAmount;
     }
 
-    /**
-     * sets amount of money player has
-     * @param moneyAmount Integer
-     */
+    
     public void setMoneyAmount(int moneyAmount) {
         this.moneyAmount = moneyAmount;
     }
 
-    /**
-     * Add to the the number of railroads the player owns
-     */
+
     public void addNumOfRailroads(){
         this.numOfRailroads++;
     }
 
-    /**
-     * gets the number of railroads
-     * @return number of railroad player owns
-     */
+
     public int getNumOfRailroads() {
         return this.numOfRailroads;
     }
 
-    /**
-     * gets number of utilities player has
-     * @return Integer numOfUtilities
-     */
+
     public int getNumOfUtilities(){
         return this.numOfUtilities;
     }
 
     /**
-     * adds num of utilities to the player
+     * Tăng số tiện ích mà người chơi sở hữu
      */
     public void addNumOfUtilities(){
         this.numOfUtilities++;
     }
 
-    /**
-     * gets position of the player
-     * @return position
-     */
+
     public int getPosition() {
         return this.position;
     }
 
-    /**
-     * Overrides java object equals() method
-     * @param obj Object, the object to check
-     * @return boolean, true iff the comparison and the object is identical, otherwise false
+     /**
+     * Ghi đè phương thức equals() của Java để kiểm tra hai đối tượng Player có giống nhau không
+     * @param obj Đối tượng để so sánh
+     * @return boolean, true nếu đối tượng giống nhau, ngược lại là false
      */
     @Override
     public boolean equals(Object obj){
@@ -233,35 +196,30 @@ public abstract class Player {
     }
 
     /**
-     * Get the current location
-     * @return String, current location
+     * Lấy vị trí hiện tại của người chơi (tên vị trí)
+     * @return Chuỗi, vị trí hiện tại
      */
     public String getCurrLocation() {
         return this.currLocation;
     }
 
-    /**
-     * Overridden Java toString method
-     * @return A string statement of the state of a player
-     */
+
     public String toString(){
         return "Player: " + this.playerName + "\n{\n" +
                 "Money: $" + this.moneyAmount + "\nLocation: " + this.currLocation + "\nOwned Properties: " + this.printOwnedProperties() + "\n}";
     }
 
-    /**
-     * Boolean method for confirming jail payment does not result in bankruptcy
-     * @return True if the player's money is greater than 50, false otherwise
+     /**
+     * Kiểm tra xem người chơi có đủ tiền để trả phí ra tù không
+     * @return True nếu tiền của người chơi lớn hơn 50, ngược lại là false
      */
     public boolean payJail() {
         return this.moneyAmount - 50 > 0;
 
     }
 
-    /**
-     * lets you print properties player owns
-     * @return String of owned property by the player
-     */
+   
+   
     public String printOwnedProperties(){
         StringBuilder s = new StringBuilder();
         for(Location location : this.ownedProperties){
@@ -270,9 +228,9 @@ public abstract class Player {
         return s.toString();
     }
 
-    /**
-     * gets the properties in a players list
-     * @return properties
+     /**
+     * Lấy danh sách các tài sản là bất động sản mà người chơi sở hữu
+     * @return Danh sách các đối tượng Property
      */
     public List<Property> getEstatePropertiesOfPlayer(){
         List<Property> properties = new ArrayList<>();
@@ -285,9 +243,9 @@ public abstract class Player {
     }
 
     /**
-     * gets the property using its name
-     * @param name String name of property
-     * @return if it is owned
+     * Lấy tài sản dựa trên tên của nó
+     * @param name Tên của tài sản
+     * @return Đối tượng Property nếu người chơi sở hữu, ngược lại là null
      */
     public Property getPropertyByName(String name){
         for (Location ownedProperty : this.ownedProperties) {
@@ -298,10 +256,10 @@ public abstract class Player {
         return null;
     }
 
-    /**
-     * checks if the player owns a property with a given color
-     * @param color BoardModel.Color the color to check for
-     * @return boolean indicating whether the player has the color or not
+   /**
+     * Kiểm tra người chơi có sở hữu tài sản với màu nhất định không
+     * @param color Màu của tài sản cần kiểm tra
+     * @return True nếu người chơi sở hữu tài sản màu đó, ngược lại là false
      */
     public boolean hasColor(BoardModel.Color color){
         return this.ownedPropertiesBasedOnColors.containsKey(color);
@@ -309,8 +267,8 @@ public abstract class Player {
 
 
     /**
-     * Integer method that checks the number of properties that can have houses on them
-     * @return An integer k
+     * Đếm số lượng tài sản mà người chơi có thể mua nhà
+     * @return Số tài sản có thể mua nhà
      */
     public int numberOfEstatePropertiesThatPlayerCanBuyHousesFor(){
         int k = 0;
@@ -329,8 +287,8 @@ public abstract class Player {
 
 
     /**
-     * Integer method that checks the number of properties that has houses on them
-     * @return An integer k
+     * Đếm số lượng tài sản mà người chơi đã xây nhà trên đó
+     * @return Số tài sản có nhà
      */
     public int numberOfEstatePropertiesWithHouses(){
         int k = 0;
@@ -344,53 +302,54 @@ public abstract class Player {
     }
 
     /**
-     * get the size of teh property owned arrays
-     * @return Integer, the size
+     * Lấy số lượng tài sản mà người chơi sở hữu
+     * @return Integer, số lượng tài sản
      */
     public int getNumOfProperties(){
         return this.ownedProperties.size();
     }
 
     /**
-     * Get property in list by index
-     * @param i, Integer index
-     * @return Location, the property
+     * Lấy tài sản dựa trên chỉ số trong danh sách
+     * @param i Chỉ số của tài sản
+     * @return Đối tượng Location, tài sản tại chỉ số đó
      */
     public Location getPropertyByIndex(int i){
         return this.ownedProperties.get(i);
     }
 
     /**
-     * how many color properties does the player own
-     * @param color Color
-     * @param numOfColor Integer
-     * @return number of colored properties owned by player
+     * Kiểm tra người chơi sở hữu bao nhiêu tài sản với một màu nhất định
+     * @param color Màu của tài sản cần kiểm tra
+     * @param numOfColor Số lượng tài sản màu đó
+     * @return True nếu số lượng tài sản màu đó đúng với yêu cầu, ngược lại là false
      */
     public boolean numberOfColoredPropertiesOwned(BoardModel.Color color, int numOfColor){
         return this.ownedPropertiesBasedOnColors.get(color) == numOfColor;
     }
 
     /**
-     * Getter for the color hashmap.
-     * @return A Color, Integer hashmap ownedPropertiesBasedOnColors.
+     * Lấy bản đồ các tài sản sở hữu theo màu
+     * @return HashMap màu và số lượng tài sản sở hữu
      */
     public HashMap<BoardModel.Color, Integer> getOwnedPropertiesBasedOnColors() {
         return ownedPropertiesBasedOnColors;
     }
 
+    
     /**
-     * Void method to add a property to the player's list of owned properties
-     * @param p A MVC.Location p
+     * Thêm tài sản vào danh sách tài sản sở hữu của người chơi
+     * @param p Đối tượng Location, tài sản cần thêm
      */
     public void addProperty(Location p){
         this.ownedProperties.add(p);
     }
 
 
-    /**
-     * adds a color code to properties if the player owns all of one color double rent
-     * @param color Color
-     * @param add Integer color int added to property
+     /**
+     * Thêm mã màu cho tài sản nếu người chơi sở hữu tất cả các tài sản màu đó (để tăng tiền thuê)
+     * @param color Màu của tài sản
+     * @param add Số lượng tài sản màu đó cần thêm
      */
     public void addColorToProperty(BoardModel.Color color, int add){
         if (this.ownedPropertiesBasedOnColors.containsKey(color)){
@@ -401,8 +360,8 @@ public abstract class Player {
         this.ownedPropertiesBasedOnColors.put(color, add);
     }
 
-    /**
-     * if player bankrupt reset all properties own by them
+   /**
+     * Nếu người chơi phá sản, đặt lại tất cả tài sản mà họ sở hữu
      */
     public void bankrupted(){
         for (Location location : this.ownedProperties){
@@ -412,13 +371,17 @@ public abstract class Player {
         this.ownedPropertiesBasedOnColors.clear();
     }
 
+      /**
+     * Lấy danh sách các tài sản mà người chơi sở hữu
+     * @return Danh sách các đối tượng Location
+     */
     public List<Location> getOwnedProperties() {
         return this.ownedProperties;
     }
 
-    /**
-     * returns a xml represntation of player as a single string
-     * @return
+      /**
+     * Trả về biểu diễn XML của người chơi dưới dạng chuỗi
+     * @return Chuỗi biểu diễn XML của người chơi
      */
     public String toXML(String kindOfPlayer){
         String currLocation = this.currLocation;
@@ -450,7 +413,8 @@ public abstract class Player {
             str += "\t\t\t</Location>\n";
         }
         str += "\t\t</ownedProperties>\n";
-        // Colored Owned Properties
+                // Các tài sản có màu sắc
+
         str += "\t\t<coloredOwnedProperties>\n";
         for(BoardModel.Color color : this.ownedPropertiesBasedOnColors.keySet()){
             str += "\t\t\t<index>\n";
@@ -463,10 +427,10 @@ public abstract class Player {
         return str;
     }
 
-    /**
-     * Create a player from load
-     * @param playerElement Element, the element contain ing the player information
-     * @return Player, the loaded player
+      /**
+     * Tạo một đối tượng Player từ dữ liệu đã lưu
+     * @param playerElement Đối tượng Element chứa thông tin của người chơi
+     * @return Đối tượng Player được tạo
      */
     public static Player createPlayer(Element playerElement){
         String kindOfPlayer = playerElement.getElementsByTagName("typeOfPlayer").item(0).getTextContent();
@@ -507,10 +471,10 @@ public abstract class Player {
         }
     }
 
-    /**
-     * Load non properties to player
-     * @param location The node containing the locations
-     * @param board the list of locations on the board
+   /**
+     * Tải các tài sản của người chơi từ dữ liệu lưu trữ
+     * @param nodeProperty Nút chứa thông tin về các tài sản
+     * @param board Danh sách các vị trí (Location) trên bảng
      */
     private void loadNonPropertyOwnerShipToPlayer(Node location, List<Location> board){
         String locationName = ((Element) location).getElementsByTagName("name").item(0).getTextContent();
@@ -532,9 +496,9 @@ public abstract class Player {
     }
 
     /**
-     * Parses the player properties
-     * @param playerElement the element containing the players information
-     * @param board the list of locations on the board
+     * Tải các tài sản không phải bất động sản mà người chơi sở hữu
+     * @param location Nút chứa thông tin về các vị trí không phải bất động sản
+     * @param board Danh sách các vị trí trên bảng
      */
     public void parseAddPlayerProperties(Element playerElement, List<Location> board) {
         Element ownedLocations = (Element) playerElement.getElementsByTagName("ownedProperties").item(0);
@@ -551,9 +515,10 @@ public abstract class Player {
         }
     }
 
-    /**
-     * parses and adds the property colors owned
-     * @param playerElement the element containing the players information
+      /**
+     * Phân tích và thêm các tài sản mà người chơi sở hữu từ dữ liệu lưu trữ
+     * @param playerElement Đối tượng Element chứa thông tin về người chơi
+     * @param board Danh sách các vị trí trên bảng
      */
     public void parseAddPlayerOwnedColors(Element playerElement) {
         Element ownedColors = (Element) playerElement.getElementsByTagName("coloredOwnedProperties").item(0);
