@@ -11,20 +11,13 @@ public class FreePassEvent extends EventObject {
 
     private final Player player;
 
-    /**
-     * Constructs a prototypical Event.
-     *
-     * @param pass the object on which the Event initially occurred
-     * @param p Player, the player
-     * @throws IllegalArgumentException if source is null
-     */
     public FreePassEvent(FreePass pass, Player p) {
         super(pass);
         this.player = p;
     }
 
     /**
-     * Getter method for the Free Pass.
+     * Getter
      * @return A MVC.FreePass object.
      */
     public FreePass getPass(){
@@ -32,7 +25,7 @@ public class FreePassEvent extends EventObject {
     }
 
     /**
-     * Overridden Java method for getting an object source.
+     * Overridden Java method lấy Object java
      * @return An object source.
      */
     @Override
@@ -41,7 +34,7 @@ public class FreePassEvent extends EventObject {
     }
 
     /**
-     * Getter for the player.
+     * Getter lấy người chơi
      * @return A Player player.
      */
     public Player getPlayer() {

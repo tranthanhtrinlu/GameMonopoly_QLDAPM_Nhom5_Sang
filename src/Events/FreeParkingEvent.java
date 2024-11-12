@@ -9,13 +9,7 @@ import java.util.EventObject;
 public class FreeParkingEvent extends EventObject {
     private final Player player;
     private final int centerMoney;
-    /**
-     * Constructs a prototypical Event.
-     *
-     * @param source the object on which the Event initially occurred
-     * @param centerMoney Integer, centermoney
-     * @throws IllegalArgumentException if source is null
-     */
+
     public FreeParkingEvent(FreeParking source, Player p, int centerMoney) {
         super(source);
         this.player = p;
@@ -23,7 +17,7 @@ public class FreeParkingEvent extends EventObject {
     }
 
     /**
-     * Getter method for returning the player
+     * Getter lấy người chơi
      * @return A MVC.Player player
      */
     public Player getPlayer() {
@@ -31,7 +25,7 @@ public class FreeParkingEvent extends EventObject {
     }
 
     /**
-     * Getter method for the MVC.Tax_FreeParking.
+     * Getter lấy FreeParking
      * @return A MVC.Tax_FreeParking event.
      */
     public FreeParking getLocation(){
@@ -39,7 +33,7 @@ public class FreeParkingEvent extends EventObject {
     }
 
     /**
-     * Java method for getting a source
+     * Java method for lấy Object java
      * @return A Java source
      */
     @Override
@@ -48,7 +42,7 @@ public class FreeParkingEvent extends EventObject {
     }
 
     /**
-     * Getter for the center money.
+     * Getter lấy center money
      * @return An integer center money.
      */
     public int getCenterMoney() {

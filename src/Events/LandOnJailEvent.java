@@ -15,25 +15,19 @@ import java.util.EventObject;
 
 /**
 
- * Class Events.LandOnJailEvent for the event when a player lands on jail. Extends EventObject
+ * Class Events.LandOnJailEvent cho sự kiện người chơi đi vô ô tù
  */
 public class LandOnJailEvent extends EventObject {
 
     private final Player player;
-    /**
-     * Constructs a prototypical Event.
-     *
-     * @param landOnJail the object on which the Event initially occurred
-     * @param p Player, the player
-     * @throws IllegalArgumentException if source is null
-     */
+
     public LandOnJailEvent(LandOnJail landOnJail, Player p) {
         super(landOnJail);
         this.player = p;
     }
 
     /**
-     * Method for getting a MVC.LandOnJail element
+     * Getter đối tượng
      * @return A MVC.LandOnJail element
      */
     public LandOnJail getLandOnJail(){
@@ -41,7 +35,7 @@ public class LandOnJailEvent extends EventObject {
     }
 
     /**
-     * Override Java method for getting a source
+     * Override Java method lấy Object java
      * @return A Java source
      */
     @Override
@@ -50,7 +44,7 @@ public class LandOnJailEvent extends EventObject {
     }
 
     /**
-     * Getter for the player.
+     * Getter lấy người chơi
      * @return A Player player.
      */
     public Player getPlayer() {
