@@ -11,18 +11,17 @@ import org.w3c.dom.Node;
 import java.util.ArrayList;
 
 /**
- * Class for Tax Board Element
+ * Lớp cho phần tử Thuế trên bảng
  * @author TQV aka QuangVx
  */
 public class Tax extends Location{
 
-
     private final ArrayList<TaxListener> listeners;
 
     /**
-     * Constructor for Tax
-     * @param name String, the name
-     * @param cost Integer, the cost
+     * Constructor cho phần tử Thuế
+     * @param name String, tên của phần tử
+     * @param cost Integer, chi phí
      */
     public Tax(String name, int cost){
         super(cost, name);
@@ -30,11 +29,11 @@ public class Tax extends Location{
     }
 
     /**
-     * Functionality for when the player lands on Tax
+     * Chức năng khi người chơi dừng lại trên Thuế
      * @param p A MVC.Player p.
-     * @param totalDiceRoll An Integer sum of the dice.
-     * @param currentTurn Integer, the current turn
-     * @return boolean, always false
+     * @param totalDiceRoll Tổng giá trị của các con xúc xắc.
+     * @param currentTurn Integer, lượt chơi hiện tại
+     * @return boolean, luôn trả về false
      */
     @Override
     public boolean locationElementFunctionality(Player p, int totalDiceRoll, int currentTurn) {
@@ -52,18 +51,18 @@ public class Tax extends Location{
     }
 
     /**
-     * tostring method for displaying tax
-     * @param p A MVC.Player object p.
-     * @return String, the string
+     * Phương thức toString để hiển thị thông tin thuế
+     * @param p A MVC.Player đối tượng p.
+     * @return String, chuỗi thông tin
      */
     @Override
     public String toString(Player p) {
-        return p.getPlayerName() + " landed on " + this.getName() + ". Loss of money is $" + this.getCost();
+        return p.getPlayerName() + " đã dừng lại trên " + this.getName() + ". Mất tiền là $" + this.getCost();
     }
 
     /**
-     * method for buying Tax (not possible so always false)
-     * @param p A MVC.Player object p.
+     * Phương thức để mua Thuế (không thể mua nên luôn trả về false)
+     * @param p A MVC.Player đối tượng p.
      * @return false
      */
     @Override
@@ -72,16 +71,16 @@ public class Tax extends Location{
     }
 
     /**
-     * Do nothing
+     * Không làm gì cả
      */
     @Override
     public void resetOwner() {
-        // Nothing
+        // Không làm gì
     }
 
     /**
-     * add boardView to listeners
-     * @param view A Listener.BoardView view.
+     * Thêm boardView vào danh sách lắng nghe
+     * @param view A Listener.BoardView đối tượng view.
      */
     @Override
     public void addListener(BoardView view) {
@@ -89,14 +88,14 @@ public class Tax extends Location{
     }
 
     /**
-     * creates a new Tax from node data
-     * @param node the node containing the data
-     * @return Location, the newly created location
+     * Tạo một phần tử Thuế mới từ dữ liệu trong node
+     * @param node node chứa dữ liệu
+     * @return Location, phần tử mới được tạo
      */
     public static Location createNewTax(Node node) {
         Element e = (Element) node;
-        String name = e.getElementsByTagName("name").item(0).getTextContent();//Parse accordingly
-        int cost = Integer.parseInt(e.getElementsByTagName("cost").item(0).getTextContent());//Parse accordingly
+        String name = e.getElementsByTagName("name").item(0).getTextContent(); // Phân tích dữ liệu tên
+        int cost = Integer.parseInt(e.getElementsByTagName("cost").item(0).getTextContent()); // Phân tích dữ liệu chi phí
         return new Tax(name, cost);
     }
 

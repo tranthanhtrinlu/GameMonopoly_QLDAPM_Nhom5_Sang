@@ -11,17 +11,17 @@ import org.w3c.dom.Node;
 import java.util.ArrayList;
 
 /**
- * @author Max Curkovic
- * Class MVC.FreeParking for describing a Free Parking element.
+ * @author TQV aka QuangVX
+ * Lớp MVC.FreeParking để mô tả một phần tử Free Parking (Ô dừng của trò chơi).
  */
 public class FreeParking extends Location{
 
 
     private final ArrayList<FreeParkingListener> listeners;
     /**
-     * Constructor for FreeParking
-     * @param cost Integer, the cost
-     * @param name String, the name
+     * Constructor cho FreeParking
+     * @param cost Integer, chi phí của 1 ô
+     * @param name String, tên của 1 ô
      */
     public FreeParking(int cost, String name){
         super(cost, name);
@@ -30,11 +30,11 @@ public class FreeParking extends Location{
     }
 
     /**
-     * Boolean method for listening to the Free Pass element.
-     * @param p A MVC.Player object p.
-     * @param totalDiceRoll An integer totalDiceRoll.
-     * @param currentTurn An integer currentTurn.
-     * @return Will always return false.
+     * Phương thức locationElementFunctionality để lắng nghe phần tử Free Pass.
+     * @param p Một đối tượng MVC.Player.
+     * @param totalDiceRoll Một số nguyên totalDiceRoll.
+     * @param currentTurn Một số nguyên currentTurn.
+     * @return Luôn trả về false.
      */
     @Override
     public boolean locationElementFunctionality(Player p, int totalDiceRoll, int currentTurn) {
@@ -49,17 +49,17 @@ public class FreeParking extends Location{
     }
 
     /**
-     * toString for Free Parking.
-     * @param p A MVC.Player object p.
-     * @return A String.
+     * Phương thức toString cho Free Parking.
+     * @param p Một đối tượng MVC.Player.
+     * @return Một chuỗi.
      */
     @Override
     public String toString(Player p) {
-        return p.getPlayerName() + " Landed on free parking. Earned money is $";
+        return p.getPlayerName() + " Đã dừng ở bãi đỗ xe miễn phí. Số tiền kiếm được là $";
     }
 
     /**
-     * Does nothing for this class.
+     * Không làm gì cho lớp này.
      */
     @Override
     public boolean buy(Player p) {
@@ -67,14 +67,14 @@ public class FreeParking extends Location{
     }
 
     /**
-     * Does nothing for this class.
+     * Không làm gì cho lớp này.
      */
     @Override
     public void resetOwner() {}
 
     /**
-     * Adds the view to the ArrayList of Free Parking listeners
-     * @param view A Listener.BoardView view
+     * Thêm view vào ArrayList của các listener Free Parking
+     * @param view Một đối tượng Listener.BoardView
      */
     @Override
     public void addListener(BoardView view) {
@@ -82,9 +82,9 @@ public class FreeParking extends Location{
     }
 
     /**
-     * create new free parking from node data
-     * @param node node containing the data
-     * @return Location, the new location created
+     * Tạo mới Free Parking từ dữ liệu node
+     * @param node node chứa dữ liệu
+     * @return Location, vị trí mới được tạo ra
      */
     public static Location createNewFreeParking(Node node) {
         Element e = (Element) node;

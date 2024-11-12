@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @author Cory Helm
+ * @author TQV aka QuangVx
  * Class MVC.Property that defines a property. Extends MVC.Location
  */
 public class Property extends Location implements BuyableLocation {
@@ -32,19 +32,20 @@ public class Property extends Location implements BuyableLocation {
     private int oldNumOfHouses;
 
     /**
-     * Constructor for Property
-     * @param name String, the name
-     * @param cost Integer, the cost
-     * @param costPerHouse Integer, the cost per house
-     * @param initialRent Integer, the initial rent
-     * @param house1Rent Integer, the rent with 1 house
-     * @param house2Rent Integer, the rent with 2 houses
-     * @param house3Rent Integer, the rent with 3 houses
-     * @param house4Rent Integer, the rent with 4 houses
-     * @param hotelRent Integer, the house with a hotel
-     * @param color BoardModel.Color, the color of property
-     * @param numOfColors Integer, then number of colors for this property
+     * Hàm khởi tạo cho Tài sản
+     * @param name String, tên tài sản
+     * @param cost Integer, giá trị tài sản
+     * @param costPerHouse Integer, chi phí mỗi ngôi nhà
+     * @param initialRent Integer, tiền thuê ban đầu
+     * @param house1Rent Integer, tiền thuê với 1 ngôi nhà
+     * @param house2Rent Integer, tiền thuê với 2 ngôi nhà
+     * @param house3Rent Integer, tiền thuê với 3 ngôi nhà
+     * @param house4Rent Integer, tiền thuê với 4 ngôi nhà
+     * @param hotelRent Integer, tiền thuê với 1 khách sạn
+     * @param color BoardModel.Color, màu sắc của tài sản
+     * @param numOfColors Integer, số lượng màu sắc của tài sản này
      */
+
     public Property(String name, int cost, int costPerHouse, int initialRent, int house1Rent, int house2Rent, int house3Rent, int house4Rent, int hotelRent, BoardModel.Color color, int numOfColors){
         super(cost, name);
         this.rentCosts = new ArrayList<>(){{
@@ -66,18 +67,20 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * set the owner attribute of a property
-     * @param p Player, the player
+     * Thiết lập thuộc tính chủ sở hữu của tài sản
+     * @param p Player, người chơi
      */
+
     public void setOwner(Player p){
         this.owner = p;
     }
 
     /**
-     * allows players to buy property and adds property to owner
+     * Cho phép người chơi mua tài sản và thêm tài sản vào chủ sở hữu
      * @param p MVC.Player
-     * @return false or true
+     * @return false hoặc true
      */
+
     @Override
     public boolean buy(Player p){
         if (p.getMoneyAmount() <= this.getCost()){
@@ -91,8 +94,9 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * resets the owner on a property
+     * Đặt lại chủ sở hữu của tài sản
      */
+
     @Override
     public void resetOwner() {
         this.numOfHouses = 0;
@@ -100,27 +104,30 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * adds a listener to the property
+     * Thêm một listener vào tài sản
      * @param view Listener.BoardView
      */
+
     @Override
     public void addListener(BoardView view) {
         this.propertyListeners.add(view);
     }
 
     /**
-     * Setter for houses.
-     * @param numOfHouses An integer number of houses
+     * Phương thức setter cho số lượng nhà.
+     * @param numOfHouses Số lượng nhà (kiểu integer)
      */
+
     public void setNumOfHouses(int numOfHouses) {
         this.numOfHouses = numOfHouses;
     }
 
     /**
-     * adds house to a property based on how many the player wants
-     * @param add Integer number of houses added
-     * @return boolean, true if house added otherwise false
+     * Thêm nhà vào tài sản dựa trên số lượng mà người chơi muốn
+     * @param add Số lượng nhà thêm vào (kiểu integer)
+     * @return boolean, trả về true nếu nhà đã được thêm, nếu không trả về false
      */
+
     public boolean addHouse(int add){
         if (this.numOfHouses+add <= this.maxNumberOfHouses && this.owner.getMoneyAmount() >= add*this.costPerHouse) {
             this.oldNumOfHouses = this.numOfHouses;
@@ -132,8 +139,8 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * Sell houses on current property
-     * @param val Integer, number of houses
+     * Bán nhà trên tài sản hiện tại
+     * @param val Số lượng nhà (kiểu integer)
      */
     public void sellHouse(int val){
         this.numOfHouses -= val;
@@ -141,9 +148,10 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * find the rent of the current property based off houses and hotels
-     * @return the rent of a property
+     * Tìm kiếm tiền thuê của tài sản hiện tại dựa trên số lượng nhà và khách sạn
+     * @return tiền thuê của tài sản
      */
+
     public int getRent(){
         if (this.owner.numberOfColoredPropertiesOwned(this.color, this.numberOfColor))
             return this.rentCosts.get(this.numOfHouses)*2;
@@ -151,11 +159,12 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * handle location owned by another user
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current turn
+     * Xử lý khi vị trí thuộc sở hữu của người chơi khác
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số điểm gieo xúc xắc
+     * @param currentTurn Integer, lượt chơi hiện tại
      */
+
     @Override
     public void handleLocationOwnedFunctionality(Player p, int totalDiceRoll, int currentTurn){
         int doubleAmount = 1;
@@ -176,11 +185,12 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * handle Location not owned functionality for the user
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current turn
+     * Xử lý chức năng khi vị trí chưa được sở hữu đối với người chơi
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số điểm gieo xúc xắc
+     * @param currentTurn Integer, lượt chơi hiện tại
      */
+
     @Override
     public void handleLocationNotOwnedFunctionalityUser(Player p, int totalDiceRoll, int currentTurn){
         if (p.getMoneyAmount() > this.getCost()){
@@ -195,11 +205,12 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * handle location owned by the current player landing on it
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current turn
+     * Xử lý chức năng khi vị trí đã được sở hữu bởi người chơi hiện tại và người chơi đó hạ cánh lên
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số điểm gieo xúc xắc
+     * @param currentTurn Integer, lượt chơi hiện tại
      */
+
     @Override
     public void handleLocationOwnedByPlayerFunctionality(Player p, int totalDiceRoll, int currentTurn){
         for (PropertyListener listener : this.propertyListeners) {
@@ -209,11 +220,12 @@ public class Property extends Location implements BuyableLocation {
 
 
     /**
-     * handles functionality for when an AI player lands on a property
-     * @param p Player, the current player
-     * @param totalDiceRoll Integer, the total Dice Roll
-     * @param currentTurn Integer, the current player turn
+     * Xử lý chức năng khi một người chơi AI hạ cánh lên tài sản
+     * @param p Player, người chơi hiện tại
+     * @param totalDiceRoll Integer, tổng số điểm gieo xúc xắc
+     * @param currentTurn Integer, lượt chơi hiện tại
      */
+
     @Override
     public void handleLocationNotOwnedFunctionalityAI(Player p, int totalDiceRoll, int currentTurn){
         if (p.getMoneyAmount() > this.getCost()){
@@ -237,11 +249,12 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * handles functionality for when an human player(User) lands on a property
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current player turn
+     * Xử lý chức năng khi một người chơi (Người dùng) hạ cánh lên tài sản
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số điểm gieo xúc xắc
+     * @param currentTurn Integer, lượt chơi hiện tại
      */
+
     @Override
     public void handleLocationNotOwnedFunctionality(Player p, int totalDiceRoll, int currentTurn){
         if (p instanceof AI) {
@@ -252,9 +265,10 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * Method for property functionality
-     * @return A boolean
+     * Phương thức cho chức năng của tài sản
+     * @return Một giá trị boolean
      */
+
     @Override
     public boolean locationElementFunctionality(Player p, int totalDiceRoll, int currentTurn) {
         if (this.owner == null) {
@@ -271,76 +285,85 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * Getter for getting cost per house
-     * @return An integer cost per house
+     * Phương thức lấy giá của mỗi ngôi nhà
+     * @return Một số nguyên là giá của mỗi ngôi nhà
      */
+
     public int getCostPerHouse() {
         return this.costPerHouse;
     }
 
     /**
-     * Getter for max number of houses
-     * @return An integer max number of houses
+     * Phương thức lấy số lượng tối đa của các ngôi nhà
+     * @return Một số nguyên là số lượng tối đa các ngôi nhà
      */
+
     public int getMaxNumberOfHouses() {
         return this.maxNumberOfHouses;
     }
 
     /**
-     * Getter for number of houses
-     * @return An integer number of houses
+     * Phương thức lấy số lượng ngôi nhà
+     * @return Một số nguyên là số lượng ngôi nhà
      */
+
     public int getNumOfHouses() {
         return this.numOfHouses;
     }
 
     /**
-     * Getter for a color
-     * @return A MVC.BoardModel color
+     * Phương thức lấy màu sắc
+     * @return Một màu sắc thuộc MVC.BoardModel
      */
+
     public BoardModel.Color getColor() {
         return this.color;
     }
 
     /**
-     * Getter for getting the number of colours on the board
-     * @return An integer numberOfColor
+     * Phương thức lấy số lượng màu sắc trên bảng
+     * @return Một số nguyên numberOfColor
      */
+
     public int getNumberOfColor() {
         return this.numberOfColor;
     }
 
     /**
-     * Getter for getting the property owner
-     * @return A MVC.Player owner
+     * Phương thức lấy chủ sở hữu của tài sản
+     * @return Một đối tượng MVC.Player owner
      */
+
     public Player getOwner() {
         return this.owner;
     }
 
     /**
-     * Method for getting the rent cost from a list of rent costs
-     * @param index An integer index
-     * @return An integer rent cost
+     * Phương thức để lấy chi phí thuê từ danh sách các chi phí thuê
+     * @param index Một chỉ số kiểu integer
+     * @return Một chi phí thuê kiểu integer
      */
+
     public int getRentCost(int index){
         if (index < 0 || index >= this.rentCosts.size()) return -1;
         return this.rentCosts.get(index);
     }
 
     /**
-     * Getter for getting the old number of houses prior to buying a house
-     * @return An integer oldNumOfHouses
+     * Phương thức lấy số lượng nhà cũ trước khi mua nhà
+     * @return Một số nguyên oldNumOfHouses
      */
+
     public int getOldNumOfHouses() {
         return this.oldNumOfHouses;
     }
 
     /**
-     * send info to a string
+     * Gửi thông tin dưới dạng chuỗi
      * @param p MVC.Player
-     * @return property name, the cost or how who owns it and how much the player owes them
+     * @return tên tài sản, chi phí hoặc ai sở hữu nó và người chơi nợ bao nhiêu
      */
+
     public String toString(Player p){
         if (this.owner == null)
             return "Property name: " + this.getName() + " {Cost: " + this.getCost() + "}";
@@ -352,8 +375,8 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * get the number of houses a current property can be bought by the Player owner
-     * @return Integer, the total number of houses
+     * Lấy số lượng nhà mà tài sản hiện tại có thể được mua bởi chủ sở hữu người chơi
+     * @return Integer, tổng số lượng nhà
      */
     public int numberOfHousesCanBuy() {
         int total = 0;
@@ -367,8 +390,8 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * setter for oldNumofHouses
-     * @param oldNumOfHouses, the old num of houses
+     * setter cho oldNumOfHouses
+     * @param oldNumOfHouses, số lượng nhà cũ
      */
     public void setOldNumOfHouses(int oldNumOfHouses) {
         this.oldNumOfHouses = oldNumOfHouses;
@@ -376,8 +399,9 @@ public class Property extends Location implements BuyableLocation {
 
     @Override
     /**
-     * returns a xml representation of property as a string
+     * trả về biểu diễn XML của tài sản dưới dạng chuỗi
      */
+
     public String toXML(){
         String str = "\t\t\t\t<Property>\n";
         str += "\t\t\t\t\t<name>" + this.getName() + "</name>\n";
@@ -388,10 +412,11 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * Create new property from node data
-     * @param node, node containing the data
-     * @return the newly created location
+     * Tạo tài sản mới từ dữ liệu của node
+     * @param node, node chứa dữ liệu
+     * @return vị trí mới được tạo
      */
+
     public static Location createNewProperty(Node node) {
         Element e = (Element) node;
         String name = e.getElementsByTagName("name").item(0).getTextContent();
@@ -409,26 +434,29 @@ public class Property extends Location implements BuyableLocation {
     }
 
     /**
-     * get the List of rent cost
+     * Lấy danh sách chi phí thuê
      * @return List<Integer>
      */
+
     public List<Integer> getRentCosts() {
         return this.rentCosts;
     }
 
     /**
-     * getter for property listeners
+     * Lấy danh sách các listener của tài sản
      * @return List<PropertyListener>
      */
+
     public List<PropertyListener> getPropertyListeners() {
         return this.propertyListeners;
     }
 
     /**
-     * Overrides java object equals() method
-     * @param obj Object, the object to check
-     * @return boolean, true iff the comparison and the object is identical, otherwise false
+     * Ghi đè phương thức equals() của đối tượng java
+     * @param obj Object, đối tượng cần kiểm tra
+     * @return boolean, trả về true nếu đối tượng và phép so sánh là giống nhau, ngược lại trả về false
      */
+
     @Override
     public boolean equals(Object obj){
         if (this == obj){

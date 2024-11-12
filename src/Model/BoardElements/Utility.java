@@ -10,24 +10,23 @@ import Model.GamePlayer.Player;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
-* @author Kareem El-Hajjar, Max Curkovic
-* Class MVC.Utility for a utility element
-*/
+ * @author Kareem El-Hajjar, Max Curkovic
+ * Lớp MVC.Utility cho phần tử tiện ích
+ */
 public class Utility extends Location implements BuyableLocation {
     private final static int AI_RANDOM_CHOICE_BUY = 0;
     private Player owner;
     private final List<UtilityListener> utilityListenerList;
 
     /**
-     * Constructor for Utility
-     * @param name String, the name
-     * @param cost Integer, the cost
+     * Constructor cho Utility
+     * @param name String, tên của tài sản
+     * @param cost Integer, chi phí
      */
     public Utility(String name, int cost) {
         super(cost, name);
@@ -36,9 +35,9 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * Allows the player to buy a utility property
+     * Cho phép người chơi mua tài sản tiện ích
      * @param p MVC.Player
-     * @return true tor false based of amount of money
+     * @return true nếu không đủ tiền, false nếu mua thành công
      */
     @Override
     public boolean buy(Player p){
@@ -53,7 +52,7 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     *resets the owner of a utility property
+     * Đặt lại chủ sở hữu của tài sản tiện ích
      */
     @Override
     public void resetOwner() {
@@ -61,8 +60,8 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * listener for board
-     * @param view  view of the board
+     * Thêm người nghe cho bảng
+     * @param view  view của bảng
      */
     @Override
     public void addListener(BoardView view) {
@@ -70,18 +69,18 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * gets the owner of the utility property
-     * @return MVC.Player, the owner
+     * Lấy chủ sở hữu của tài sản tiện ích
+     * @return MVC.Player, chủ sở hữu
      */
     public Player getOwner() {
         return this.owner;
     }
 
     /**
-     * handle location functionality if the location is owned
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current turn
+     * Xử lý chức năng khi tài sản đã được sở hữu
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số xúc xắc
+     * @param currentTurn Integer, lượt hiện tại
      */
     @Override
     public void handleLocationOwnedFunctionality(Player p, int totalDiceRoll, int currentTurn){
@@ -101,10 +100,10 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * handle location functionality if the location is not owned for the user
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current turn
+     * Xử lý chức năng khi tài sản chưa được sở hữu cho người chơi
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số xúc xắc
+     * @param currentTurn Integer, lượt hiện tại
      */
     @Override
     public void handleLocationNotOwnedFunctionalityUser(Player p, int totalDiceRoll, int currentTurn) {
@@ -120,10 +119,10 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * handle location functionality if the location is owned by another player
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current turn
+     * Xử lý chức năng khi tài sản được sở hữu bởi người chơi khác
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số xúc xắc
+     * @param currentTurn Integer, lượt hiện tại
      */
     @Override
     public void handleLocationOwnedByPlayerFunctionality(Player p, int totalDiceRoll, int currentTurn) {
@@ -133,10 +132,10 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * handles functionality for when an AI player lands on a utility
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the sum of die
-     * @param currentTurn Integer, the current player turn
+     * Xử lý chức năng khi một AI chơi game đi qua tiện ích
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số xúc xắc
+     * @param currentTurn Integer, lượt hiện tại
      */
     @Override
     public void handleLocationNotOwnedFunctionalityAI(Player p, int totalDiceRoll, int currentTurn){
@@ -153,10 +152,10 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * handles functionality for when a player lands on a rail road
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the sum of die
-     * @param currentTurn Integer, the current player turn
+     * Xử lý chức năng khi người chơi đi qua một tài sản chưa sở hữu
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số xúc xắc
+     * @param currentTurn Integer, lượt hiện tại
      */
     @Override
     public void handleLocationNotOwnedFunctionality(Player p, int totalDiceRoll, int currentTurn) {
@@ -166,12 +165,13 @@ public class Utility extends Location implements BuyableLocation {
             handleLocationNotOwnedFunctionalityUser(p,totalDiceRoll,currentTurn);
         }
     }
+
     /**
-     * location for player on the board and element functionality
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the sum of die
-     * @param currentTurn Integer, the current player turn
-     * @return Boolean, true if no owner, otherwise false
+     * Chức năng của vị trí trên bảng đối với người chơi
+     * @param p Player, người chơi
+     * @param totalDiceRoll Integer, tổng số xúc xắc
+     * @param currentTurn Integer, lượt hiện tại
+     * @return Boolean, true nếu chưa có chủ, ngược lại false
      */
     @Override
     public boolean locationElementFunctionality(Player p, int totalDiceRoll, int currentTurn) {
@@ -179,7 +179,7 @@ public class Utility extends Location implements BuyableLocation {
             handleLocationNotOwnedFunctionality(p, totalDiceRoll, currentTurn);
             return true;
         } else {
-            if (!this.owner.equals(p)) { // if owned
+            if (!this.owner.equals(p)) { // nếu đã có chủ
                 handleLocationOwnedFunctionality(p,totalDiceRoll, currentTurn);
                 return false;
             }
@@ -189,9 +189,9 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * how much someone has to pay if a player lands on utility
-     * @param totalDiceRoll Integer of dice sum
-     * @return Integer, payment amount accordingly
+     * Tính số tiền cần phải trả khi người chơi dừng lại tại tiện ích
+     * @param totalDiceRoll Integer, tổng số xúc xắc
+     * @return Integer, số tiền cần trả
      */
     public int payment(int totalDiceRoll){
         int amount = 4;
@@ -201,27 +201,27 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * puts info to a string
+     * Chuyển thông tin thành chuỗi
      * @param p MVC.Player
-     * @return property name, who owns it and how much is owed if landing on it
+     * @return tên tài sản, ai sở hữu nó và số tiền phải trả nếu dừng lại tại đó
      */
     @Override
     public String toString(Player p) {
         if (this.owner == null)
-            return "Property name: " + this.getName() + " {Purchase property: " + this.getCost() + "}";
+            return "Tên tài sản: " + this.getName() + " {Mua tài sản: " + this.getCost() + "}";
         else if (this.owner.equals(p)){
-            return "Property name: " + this.getName() + " Who owns this property";
+            return "Tên tài sản: " + this.getName() + " Bạn là người sở hữu tài sản này";
         }
         int amount = 4;
         if (this.owner.getNumOfUtilities() == BoardModel.TOTAL_UTILITIES)
             amount = 10;
-        return "Property name: " + this.getName() + " {Owned: + " + this.owner.getPlayerName() + ", Payment: dice rolls * "
-                + amount + "} \n" + p.getPlayerName() + " will lose money now";
+        return "Tên tài sản: " + this.getName() + " {Sở hữu: " + this.owner.getPlayerName() + ", Tiền phải trả: xúc xắc * "
+                + amount + "} \n" + p.getPlayerName() + " sẽ mất tiền khi dừng lại tại đây";
     }
 
     @Override
     /**
-     * returns an XML representation of Utility as a String
+     * Trả về biểu diễn XML của Utility dưới dạng chuỗi
      */
     public String toXML(){
         String str = "\t\t\t\t<Utility>\n";
@@ -231,17 +231,17 @@ public class Utility extends Location implements BuyableLocation {
     }
 
     /**
-     * Set the owner of this utility
-     * @param owner Player, the player to be set as the new owner
+     * Thiết lập chủ sở hữu của tài sản tiện ích này
+     * @param owner Player, người chơi là chủ sở hữu mới
      */
     public void setOwner(Player owner) {
         this.owner = owner;
     }
 
     /**
-     * create new utility from node data
-     * @param node, the node containing the data
-     * @return the newly created location
+     * Tạo mới một tiện ích từ dữ liệu của node
+     * @param node, node chứa dữ liệu
+     * @return đối tượng Location vừa được tạo
      */
     public static Location createNewUtility(Node node) {
         Element e = (Element) node;
