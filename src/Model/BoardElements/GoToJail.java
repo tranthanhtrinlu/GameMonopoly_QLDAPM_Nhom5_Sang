@@ -12,29 +12,28 @@ import java.util.List;
 
 /**
  * @author TQV aka QuangVx
- * Siuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
- * Class MVC.GoToJail that defines a MVC.GoToJail element. Extends MVC.Location
+ * Lớp MVC.GoToJail để định nghĩa một phần tử MVC.GoToJail. Kế thừa từ MVC.Location.
  */
 public class GoToJail extends Location{
 
     private final List<GoToJailListener> goToJailListener;
 
     /**
-     * Constructor for Go To Jail Board Element
-     * @param name String, the name
-     * @param cost Integer, the cost
+     * Constructor cho phần tử Bảng Đi Tù
+     * @param name String, tên
+     * @param cost Integer, chi phí
      */
     public GoToJail(String name, int cost) {
         super(cost, name);
-        this.goToJailListener= new ArrayList<>();
+        this.goToJailListener = new ArrayList<>();
     }
 
     /**
-     * Describes functionality of the MVC.GoToJail element
-     * @param p MVC.Player object p
-     * @param totalDiceRoll Integer sum of dice roll
-     * @param currentTurn Integer, the current turn
-     * @return A boolean, always returns false
+     * Mô tả chức năng của phần tử MVC.GoToJail
+     * @param p Đối tượng MVC.Player
+     * @param totalDiceRoll Tổng giá trị xúc xắc
+     * @param currentTurn Integer, lượt hiện tại
+     * @return Một giá trị boolean, luôn trả về false
      */
     @Override
     public boolean locationElementFunctionality(Player p, int totalDiceRoll, int currentTurn) {
@@ -48,17 +47,17 @@ public class GoToJail extends Location{
     }
 
     /**
-     * Java toString method
-     * @param p A player p
-     * @return A string sentence of someone landing on MVC.GoToJail
+     * Phương thức toString của Java
+     * @param p Một người chơi p
+     * @return Một câu chuỗi mô tả người chơi đang dừng tại MVC.GoToJail
      */
     @Override
     public String toString(Player p) {
-        return p.getPlayerName() + " landed on " + this.getName() + ". Being Sent to Jail.";
+        return p.getPlayerName() + " đã dừng ở " + this.getName() + ". Đang bị gửi vào tù.";
     }
 
     /**
-     * Does nothing for this class
+     * Không làm gì cho lớp này
      */
     @Override
     public boolean buy(Player p) {
@@ -66,7 +65,7 @@ public class GoToJail extends Location{
     }
 
     /**
-     * Does nothing for this class
+     * Không làm gì cho lớp này
      */
     @Override
     public void resetOwner() {
@@ -74,8 +73,8 @@ public class GoToJail extends Location{
     }
 
     /**
-     * Adds the view to the ArrayList of goToJailListeners
-     * @param view A Listener.BoardView view
+     * Thêm view vào ArrayList của goToJailListeners
+     * @param view Một đối tượng Listener.BoardView
      */
     @Override
     public void addListener(BoardView view) {
@@ -83,9 +82,9 @@ public class GoToJail extends Location{
     }
 
     /**
-     * create new go to jail form load
-     * @param node node containing go to jail info
-     * @return Location, the new location created
+     * Tạo mới một phần tử đi tù từ dữ liệu tải về
+     * @param node node chứa thông tin đi tù
+     * @return Location, vị trí mới được tạo
      */
     public static Location createNewGoToJail(Node node) {
         Element e = (Element) node;
@@ -93,6 +92,5 @@ public class GoToJail extends Location{
         int cost = Integer.parseInt(e.getElementsByTagName("cost").item(0).getTextContent());
         return new GoToJail(name, cost);
     }
-
 
 }

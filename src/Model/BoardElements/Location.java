@@ -5,17 +5,17 @@ import Model.GamePlayer.Player;
 
 /**
  * @author Max Curkovic
- * Abstract class MVC.Location that generally describes a location on the board.
- * Note that some of these abstract methods are blank in specific elements, as they are not "real" properties that can be owned or bought.
+ * Lớp trừu tượng MVC.Location mô tả chung về một vị trí trên bảng.
+ * Lưu ý rằng một số phương thức trừu tượng này sẽ không thực hiện trong các phần tử cụ thể, vì chúng không phải là tài sản "thực" có thể sở hữu hoặc mua.
  */
 public abstract class Location {
     private final int cost;
     private final String name;
 
     /**
-     * Constructor for MVC.Location
-     * @param cost An integer cost
-     * @param name A String name.
+     * Constructor cho MVC.Location
+     * @param cost Chi phí dưới dạng số nguyên
+     * @param name Tên dưới dạng chuỗi.
      */
     public Location(int cost, String name){
         this.cost = cost;
@@ -23,53 +23,53 @@ public abstract class Location {
     }
 
     /**
-     * Getter method for a name.
-     * @return A String name.
+     * Phương thức getter cho tên.
+     * @return Một chuỗi tên.
      */
     public String getName() {
         return this.name;
     }
 
     /**
-     * Getter method for cost.
-     * @return An Integer cost.
+     * Phương thức getter cho chi phí.
+     * @return Chi phí dưới dạng số nguyên.
      */
     public int getCost() {
         return this.cost;
     }
 
     /**
-     * Abstract boolean method for any functionality of a location on the board.
-     * @param p A MVC.Player p.
-     * @param totalDiceRoll An Integer sum of the dice.
-     * @param currentTurn Integer, the current turn
-     * @return A boolean, value depends on the subclass.
+     * Phương thức trừu tượng trả về boolean cho bất kỳ chức năng nào của một vị trí trên bảng.
+     * @param p Đối tượng MVC.Player p.
+     * @param totalDiceRoll Tổng giá trị của xúc xắc.
+     * @param currentTurn Số nguyên, lượt hiện tại
+     * @return Giá trị boolean, phụ thuộc vào lớp con.
      */
     public abstract boolean locationElementFunctionality(Player p, int totalDiceRoll, int currentTurn);
 
     /**
-     * Overriden Java method for converting to a String.
-     * @param p A MVC.Player object p.
-     * @return A string.
+     * Phương thức Java đã được ghi đè để chuyển thành chuỗi.
+     * @param p Đối tượng MVC.Player p.
+     * @return Một chuỗi.
      */
     public abstract String toString(Player p);
 
     /**
-     * Abstract boolean method for purchasing an element.
-     * @param p A MVC.Player object p.
-     * @return True if bought, false otherwise.
+     * Phương thức trừu tượng trả về boolean cho việc mua một phần tử.
+     * @param p Đối tượng MVC.Player p.
+     * @return True nếu đã mua, false nếu không.
      */
     public abstract boolean buy(Player p);
 
     /**
-     * Abstract void method for resetting the owner of an element.
+     * Phương thức trừu tượng void để thiết lập lại chủ sở hữu của một phần tử.
      */
     public abstract void resetOwner();
 
 
     /**
-     * Abstract method for adding a view to a listener ArrayList.
-     * @param view A Listener.BoardView view.
+     * Phương thức trừu tượng để thêm một view vào mảng listener.
+     * @param view Đối tượng Listener.BoardView view.
      */
     public abstract void addListener(BoardView view);
 

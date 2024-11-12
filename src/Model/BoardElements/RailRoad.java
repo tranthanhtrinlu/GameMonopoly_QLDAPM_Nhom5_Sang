@@ -9,14 +9,13 @@ import Model.GamePlayer.Player;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 /**
  * @author TQV aka QuangVx
- * Class Railroad that defines a railroad element. Extends MVC.Location
+ * Lớp Railroad định nghĩa một phần tử đường ray. Kế thừa từ MVC.Location
  */
 public class RailRoad extends Location implements BuyableLocation {
     public final static String INVALID_PARSE = "B&O RailRoad";
@@ -27,25 +26,25 @@ public class RailRoad extends Location implements BuyableLocation {
     private final List<RailRoadListener> railRoadListener;
 
     /**
-     * Constructor for railroad boardModel
+     * Hàm khởi tạo cho mô hình đường ray
      */
     public RailRoad(String name, int cost){
         super(cost, name);
         this.payments = new ArrayList<>(){{
-           add(25);
-           add(50);
-           add(100);
-           add(200);
+            add(25);
+            add(50);
+            add(100);
+            add(200);
         }};
         this.railRoadListener = new ArrayList<>();
         this.owner = null;
     }
 
     /**
-     * handle location functionality if the location is owned
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current turn
+     * Xử lý chức năng của vị trí nếu vị trí đã có chủ
+     * @param p Người chơi, player
+     * @param totalDiceRoll Số tổng của các lượt đổ xúc xắc
+     * @param currentTurn Lượt hiện tại
      */
     @Override
     public void handleLocationOwnedFunctionality(Player p, int totalDiceRoll, int currentTurn){
@@ -65,10 +64,10 @@ public class RailRoad extends Location implements BuyableLocation {
     }
 
     /**
-     * handle location functionality if location is not owned for the User
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current turn
+     * Xử lý chức năng của vị trí nếu vị trí chưa có chủ cho người chơi
+     * @param p Người chơi, player
+     * @param totalDiceRoll Số tổng của các lượt đổ xúc xắc
+     * @param currentTurn Lượt hiện tại
      */
     @Override
     public void handleLocationNotOwnedFunctionalityUser(Player p, int totalDiceRoll, int currentTurn) {
@@ -81,14 +80,13 @@ public class RailRoad extends Location implements BuyableLocation {
                 }
             }
         }
-
     }
 
     /**
-     * handle location owned by the current player landing on it
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the total dice roll
-     * @param currentTurn Integer, the current turn
+     * Xử lý chức năng của vị trí nếu vị trí đã có chủ và người chơi hiện tại đổ xúc xắc vào
+     * @param p Người chơi, player
+     * @param totalDiceRoll Số tổng của các lượt đổ xúc xắc
+     * @param currentTurn Lượt hiện tại
      */
     @Override
     public void handleLocationOwnedByPlayerFunctionality(Player p, int totalDiceRoll, int currentTurn) {
@@ -98,10 +96,10 @@ public class RailRoad extends Location implements BuyableLocation {
     }
 
     /**
-     * handles functionality for when an AI player lands on a railroad
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the dice sum
-     * @param currentTurn Integer, the current player turn
+     * Xử lý chức năng khi người chơi AI đổ xúc xắc vào một đường ray
+     * @param p Người chơi, player
+     * @param totalDiceRoll Tổng số xúc xắc
+     * @param currentTurn Lượt hiện tại
      */
     @Override
     public void handleLocationNotOwnedFunctionalityAI(Player p, int totalDiceRoll, int currentTurn){
@@ -118,10 +116,10 @@ public class RailRoad extends Location implements BuyableLocation {
     }
 
     /**
-     * handles functionality for when an human player(User) lands on a rail road
-     * @param p Player, the player
-     * @param totalDiceRoll Integer, the dice sum
-     * @param currentTurn Integer, the current player turn
+     * Xử lý chức năng khi một người chơi người chơi (User) đổ xúc xắc vào một đường ray
+     * @param p Người chơi, player
+     * @param totalDiceRoll Tổng số xúc xắc
+     * @param currentTurn Lượt hiện tại
      */
     @Override
     public void handleLocationNotOwnedFunctionality(Player p, int totalDiceRoll, int currentTurn) {
@@ -133,11 +131,11 @@ public class RailRoad extends Location implements BuyableLocation {
     }
 
     /**
-     * element functionality
-     * @param p MVC.Player
-     * @param totalDiceRoll Integer sum of dice roll
-     * @param currentTurn Integer, the currentTurn
-     * @return true or false
+     * Chức năng của phần tử
+     * @param p Người chơi, player
+     * @param totalDiceRoll Tổng số của các lượt đổ xúc xắc
+     * @param currentTurn Lượt hiện tại
+     * @return true hoặc false
      */
     @Override
     public boolean locationElementFunctionality(Player p, int totalDiceRoll, int currentTurn) {
@@ -157,9 +155,9 @@ public class RailRoad extends Location implements BuyableLocation {
     }
 
     /**
-     * allows the player to buy a railroad
-     * @param p MVC.Player
-     * @return false or ture depending on if they have the money needed
+     * Cho phép người chơi mua một đường ray
+     * @param p Người chơi, player
+     * @return false hoặc true tùy thuộc vào việc họ có đủ tiền không
      */
     @Override
     public boolean buy(Player p){
@@ -174,25 +172,24 @@ public class RailRoad extends Location implements BuyableLocation {
     }
 
     /**
-     * resets the owner of a railroad property
+     * Đặt lại chủ sở hữu của tài sản đường ray
      */
     @Override
     public void resetOwner() {
         this.owner = null;
     }
 
-
     /**
-     * Getter for getting the payment to an owner of a property
-     * @return An integer payment
+     * Getter để lấy tiền thanh toán cho chủ sở hữu của tài sản
+     * @return Một khoản thanh toán là số nguyên
      */
     public int getPayment(){
         return this.payments.get(this.owner.getNumOfRailroads());
     }
 
     /**
-     * Method for adding a view to the list of railroadListeners
-     * @param view A Listener.BoardView view.
+     * Phương thức thêm một view vào danh sách các railroadListeners
+     * @param view Một đối tượng Listener.BoardView view.
      */
     @Override
     public void addListener(BoardView view) {
@@ -200,8 +197,8 @@ public class RailRoad extends Location implements BuyableLocation {
     }
 
     /**
-     * gets the owner of the railroad
-     * @return owner
+     * Lấy chủ sở hữu của đường ray
+     * @return chủ sở hữu
      */
     public Player getOwner() {
         return this.owner;
@@ -212,9 +209,9 @@ public class RailRoad extends Location implements BuyableLocation {
     }
 
     /**
-     * prints info to a string
-     * @param p MVC.Player
-     * @return property name the cost or who owns it and how much the player owes
+     * In thông tin ra chuỗi
+     * @param p Người chơi, player
+     * @return tên tài sản, giá trị tài sản hoặc ai sở hữu nó và người chơi sẽ nợ bao nhiêu tiền
      */
     @Override
     public String toString(Player p) {
@@ -229,7 +226,7 @@ public class RailRoad extends Location implements BuyableLocation {
 
     @Override
     /**
-     * Returns an XML representation of RailRoad as a string
+     * Trả về đại diện XML của RailRoad dưới dạng chuỗi
      */
     public String toXML(){
         String name = this.getName();
@@ -242,9 +239,9 @@ public class RailRoad extends Location implements BuyableLocation {
     }
 
     /**
-     * Create new railroad form node data
-     * @param node, the node containing the data
-     * @return the newly created Location
+     * Tạo một đường ray mới từ dữ liệu của node
+     * @param node, node chứa dữ liệu
+     * @return Tạo một Location mới
      */
     public static Location createNewRailRoad(Node node) {
         Element e = (Element) node;
