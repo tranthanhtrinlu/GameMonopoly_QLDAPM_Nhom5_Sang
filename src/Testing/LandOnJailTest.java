@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class LandOnJailTest {
 
     /**
-     * Test to test the cost of the LandOnJail element.
+     * Kiểm tra chi phí của phần tử LandOnJail.
      */
     @Test
     public void testCost(){
