@@ -13,12 +13,6 @@ public class GoToJailEvent extends EventObject {
     private final int oldPos;
     private final int newPos;
 
-    /**
-     * Constructor for jail event
-     *
-     * @param goToJail the object on which the Event initially occurred
-     * @throws IllegalArgumentException if source is null
-     */
     public GoToJailEvent(GoToJail goToJail, Player p, int currentTurn, int oldPos, int newPos) {
         super(goToJail);
         this.player = p;
@@ -28,7 +22,7 @@ public class GoToJailEvent extends EventObject {
     }
 
     /**
-     * Getter method for returning the player.
+     * Getter lấy người chơi
      * @return A MVC.Player object player.
      */
     public Player getPlayer() {
@@ -36,7 +30,7 @@ public class GoToJailEvent extends EventObject {
     }
 
     /**
-     * Getter method for the Go To Jail.
+     * Getter lấy sự kiện đi từ
      * @return A MVC.GoToJail event.
      */
     public GoToJail getGoToJail(){
@@ -44,7 +38,7 @@ public class GoToJailEvent extends EventObject {
     }
 
     /**
-     * Overridden Java method for getting an object source.
+     * Overridden Java method Lấy object java
      * @return An object source.
      */
     @Override

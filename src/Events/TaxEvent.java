@@ -2,24 +2,21 @@ package Events;
 import Model.GamePlayer.Player;
 import Model.BoardElements.Tax;
 import java.util.EventObject;
-
+/*
+Đại diện sự kiện vào ô thuês
+ */
 public class TaxEvent extends EventObject {
 
     private final Player player;
 
-    /**
-     * Constructs a prototypical Event.
-     *
-     * @param source the object on which the Event initially occurred
-     * @throws IllegalArgumentException if source is null
-     */
+
     public TaxEvent(Tax source, Player p) {
         super(source);
         this.player = p;
     }
 
     /**
-     * Getter method for returning the player
+     * Getter lấy người chơi hiện tại ở ô
      * @return A MVC.Player player
      */
     public Player getPlayer() {
@@ -27,7 +24,7 @@ public class TaxEvent extends EventObject {
     }
 
     /**
-     * Getter method for the MVC.Tax_FreeParking.
+     * Getter lấy địa chỉ ô
      * @return A MVC.Tax_FreeParking event.
      */
     public Tax getLocation(){
@@ -35,7 +32,7 @@ public class TaxEvent extends EventObject {
     }
 
     /**
-     * Overriden Java method for getting a source
+     * Overriden Java method lấy object java
      * @return A Java source
      */
     @Override

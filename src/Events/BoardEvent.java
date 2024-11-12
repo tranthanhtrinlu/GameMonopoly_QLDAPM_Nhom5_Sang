@@ -17,17 +17,6 @@ public class BoardEvent extends EventObject {
     private final int numOfPlayers;
     private final ArrayList<Player> players;
 
-    /**
-     * Default constructor for Events.BoardEvent.
-     * @param boardModel A MVC.BoardModel object boardModel.
-     * @param board A list of locations board.
-     * @param doubles A boolean doubles.
-     * @param roll1 Integer, dice 1 roll
-     * @param roll2 An integer roll2.
-     * @param p Player p
-     * @param turn An integer turn
-     * @param players ArrayList of players
-     */
     public BoardEvent(BoardModel boardModel, List<Location> board, boolean doubles, int roll1, int roll2, Player p, int turn, ArrayList<Player> players) {
         super(boardModel);
         this.board = board;
@@ -57,31 +46,28 @@ public class BoardEvent extends EventObject {
     }
 
     /**
-     * Getter for roll1.
-     * @return An integer roll1.
+     * Getter: lấy xúc xắc 1
      */
     public int getRoll1() {
         return this.roll1;
     }
 
     /**
-     * Getter for roll2.
-     * @return An integer roll2.
+     * Getter lấy xúc xắc 2
      */
     public int getRoll2() {
         return this.roll2;
     }
 
     /**
-     * Method for determining the sum of the two rolls.
-     * @return An integer sum of roll1 and roll2.
+     * Xác định tổng của 2 xúc xắc
      */
     public int diceSum(){
         return this.roll1 + this.roll2;
     }
 
     /**
-     * Method for determining if a roll is doubles.
+     * Kiểm tra roll có phải kiểu double
      * @return A boolean doubles.
      */
     public boolean getDoubles(){
@@ -89,7 +75,7 @@ public class BoardEvent extends EventObject {
     }
 
     /**
-     * Method for determining the name of an element on the board.
+     * Xác định tên của một phần tử trên bảng
      * @param index An integer index.
      * @return A string name from the board element.
      */
@@ -101,7 +87,7 @@ public class BoardEvent extends EventObject {
     }
 
     /**
-     * Method for returning the location of an element on the board.
+     * Lấy phần tử vị trí trong bảng thông qua index
      * @param index An integer index.
      * @return A MVC.Location object of an element on the board.
      */
@@ -110,7 +96,7 @@ public class BoardEvent extends EventObject {
     }
 
     /**
-     * Getter method for the model using getSource().
+     * Getter lấy Board Model
      * @return A MVC.BoardModel object model.
      */
     public BoardModel getModel(){
@@ -118,7 +104,7 @@ public class BoardEvent extends EventObject {
     }
 
     /**
-     * Overriden Java method for getting an object source.
+     * Overriden Java method để Object
      * @return An object source.
      */
     @Override
