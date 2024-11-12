@@ -15,18 +15,14 @@ import java.util.EventObject;
 
 /**
 
- * Class Events.RailRoadEvent for defining a railroad event. Extends EventObject
+ * Class Events.RailRoadEvent đại diện sự kiện vào ô  đường
  */
 public class RailRoadEvent extends EventObject {
 
     private final Player player;
     private final int rentCost;
 
-    /**
-     * constructor for railroad
-     * @param rail MVC.RailRoad property
-     * @param p MVC.Player
-     */
+
     public RailRoadEvent(RailRoad rail, Player p, int rentCost) {
         super(rail);
         this.player = p;
@@ -34,7 +30,7 @@ public class RailRoadEvent extends EventObject {
     }
 
     /**
-     * Getter method for returning the player
+     * Lấy người chơi hiện tại ở ô
      * @return A MVC.Player player
      */
     public Player getPlayer() {
@@ -42,7 +38,7 @@ public class RailRoadEvent extends EventObject {
     }
 
     /**
-     * Getter method for the Railroad element.
+     * Getter lấy đối tượng đường
      * @return A Railroad event.
      */
     public RailRoad getRailRoad(){
@@ -50,7 +46,7 @@ public class RailRoadEvent extends EventObject {
     }
 
     /**
-     * Override Java method for getting a source
+     * Override Java Lấy object java
      * @return A Java source
      */
     @Override
@@ -59,7 +55,7 @@ public class RailRoadEvent extends EventObject {
     }
 
     /**
-     * Get the rent cost
+     * Lấy ra giá thuê
      * @return Integer, the rent cost
      */
     public int getRentCost() {

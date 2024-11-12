@@ -1,9 +1,8 @@
 package View;
-
 import Events.*;
 import Listener.BoardView;
-import Model.BoardModel;
 import Model.GamePlayer.AI;
+import Model.BoardModel;
 import Model.GamePlayer.Player;
 import Model.GamePlayer.User;
 import View.Components.GameDisplayPanel;
@@ -15,6 +14,7 @@ import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +30,6 @@ public class BoardGUI extends JFrame implements BoardView{
 
     private GameDisplayPanel gamePanel;
     private PlayerDisplayPanel sidePanel;
-//    private PlayerDisplayPanel sidePanel;
     private JPanel gameControlPanel;
 
     private final JButton turnPass, quit, roll, payOutOfJail, rollDouble, purchaseEstateHouses, sellHouses, save, save_quit;
@@ -108,8 +107,8 @@ public class BoardGUI extends JFrame implements BoardView{
     private void mainMenu(BoardModel model) {
         resetFrame();
         JButton newGame = new JButton("New Game");
-        JButton loadGame = new JButton("Load Recent Game");
-        JButton quitMainMenu = new JButton("Quit");
+        JButton loadGame = new JButton("Latest Game");
+        JButton quitMainMenu = new JButton("Quit Game");
         addToMenuPanels(newGame, loadGame, quitMainMenu);
         newGame.addActionListener(e -> {playerBoardChoice(model);});
         quitMainMenu.addActionListener(e -> {System.exit(0);});
@@ -128,7 +127,7 @@ public class BoardGUI extends JFrame implements BoardView{
      */
     private void playerBoardChoice(BoardModel model){
         resetFrame();
-        JButton UK = new JButton("UK Version");
+        JButton UK = new JButton("Vietnamese Version");
         JButton US = new JButton("US Version");
         JButton back = new JButton("Back");
         addToMenuPanels(UK, US, back);
@@ -297,7 +296,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void propertyOwned(PropertyEvent e) {
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " landed on " + e.getProperty().getName() + ", Property they own. Moving to the next player");
+        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " landed on " + e.getProperty().getName() + ", Property they own. Moving to the next player"
+        +"\n(Người chơi: " + e.getPlayer().getPlayerName() + " đã dừng tại " + e.getProperty().getName() + ", Tài sản thuộc sở hữu của họ. Chuyển sang người chơi tiếp theo."
+        );
     }
 
     /**
@@ -309,7 +310,10 @@ public class BoardGUI extends JFrame implements BoardView{
     public void propertyRent(PropertyEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
         controller.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " landed on " + e.getProperty().getName() + " Owned by " + e.getProperty().getOwner().getPlayerName()
-                + " and rent is $" + e.getCost() + "\nThey pay now");
+                + " and rent is $" + e.getCost() + "\nThey pay now"
+        + "\n(Người chơi: " + e.getPlayer().getPlayerName() + " đã dừng tại " + e.getProperty().getName() + " Thuộc sở hữu của " + e.getProperty().getOwner().getPlayerName()
+                        + " và giá thuê là $" + e.getCost() + "\n Trả tiền ngay!)"
+                );
     }
 
     /**
@@ -318,7 +322,10 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void announceCannotBuy(PropertyEvent e){
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " tried to buy " + e.getProperty().getName() + " but does not have enough Money, moving to the next player");
+        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " tried to buy " + e.getProperty().getName() + " but does not have enough Money, moving to the next player"
+        +
+                        "\n(Người chơi: " + e.getPlayer().getPlayerName() + " đang cố mua " + e.getProperty().getName() + " mà hỏng có ddue tiền, chuyển sang người chơi tiếp theo)"
+        );
     }
 
     /**
@@ -328,7 +335,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void announcePurchaseProperty(PropertyEvent e){
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " has purchased " + e.getProperty().getName());
+        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " has purchased " + e.getProperty().getName()
+        + "\n(Người chơi: " + e.getPlayer().getPlayerName() + " đã mua thành công " + e.getProperty().getName() +")"
+        );
     }
 
 
@@ -355,7 +364,8 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void railRoadOwned(RailRoadEvent e) {
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " landed on " + e.getRailRoad().getName() + ", Property they own. Moving to the next player");
+        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " landed on " + e.getRailRoad().getName() + ", Property they own. Moving to the next player" +
+                "\n(Người chơi: " + e.getPlayer().getPlayerName() + " đã dừng tại" + e.getRailRoad().getName() + ", Tài sản họ sở hữu. Chuyển sang người chơi tiếp theo )");
     }
 
     /**
@@ -367,7 +377,10 @@ public class BoardGUI extends JFrame implements BoardView{
     public void railRoadRent(RailRoadEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
         controller.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " landed on " + e.getRailRoad().getName() + " Owned by " + e.getRailRoad().getOwner().getPlayerName()
-                + " and rent is $" + e.getRentCost() + "\nThey pay now");
+                + " and rent is $" + e.getRentCost() + "\nThey pay now"
+                +"\n(Người chơi: " + e.getPlayer().getPlayerName() + " đã dừng tại " + e.getRailRoad().getName() + " Được sở hữu bởi " + e.getRailRoad().getOwner().getPlayerName()
+                + " và giá thuể là $" + e.getRentCost() + "\n Trả tiền cho họ ngay!)"
+        );
     }
 
     /**
@@ -377,7 +390,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void announceCannotBuyRailRoad(RailRoadEvent e){
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " tried to buy " + e.getRailRoad().getName() + " but does not have enough Money, moving to the next player");
+        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " tried to buy " + e.getRailRoad().getName() + " but does not have enough Money, moving to the next player"
+        + "\n(Người chơi: " + e.getPlayer().getPlayerName() + " đang cố mua " + e.getRailRoad().getName() + " mà hỏng có đủ tiền, Chuyển sang ngươi chơi tiếp theo)"
+        );
     }
 
     /**
@@ -387,7 +402,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void announcePurchaseRailRoad(RailRoadEvent e){
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " has purchased " + e.getRailRoad().getName());
+        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " has purchased " + e.getRailRoad().getName()
+        +"\n(Người chơi: " + e.getPlayer().getPlayerName() + " đã mua thành công " + e.getRailRoad().getName()+ ")"
+        );
     }
 
     // **END OF RAIL ROAD IMPLEMENTATION** //
@@ -412,7 +429,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void UtilityOwned(UtilityEvent e) {
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "player:  " + e.getPlayer().getPlayerName() + " landed on " + e.getUtility().getName() + " a Utility they own. Moving to the next player");
+        messageController.sendMessage(this, "Player:  " + e.getPlayer().getPlayerName() + " landed on " + e.getUtility().getName() + " a Utility they own. Moving to the next player"
+        + "\n(Người chơi:  " + e.getPlayer().getPlayerName() + " đã dùng tại " + e.getUtility().getName() + " 1 tiện ích mà họ sở hữu. Chuyển sang người chơi tiếp theo)"
+        );
     }
 
     /**
@@ -424,7 +443,11 @@ public class BoardGUI extends JFrame implements BoardView{
     public void UtilityPay(UtilityEvent e) {
         ConfirmMessageController messageController = new ConfirmMessageController();
         messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " landed on " + e.getUtility().getName() + " Owned by " + e.getUtility().getOwner().getPlayerName() + ".\n" +
-                "Number of utilities owned by owner is " + e.getUtility().getOwner().getNumOfUtilities() + ". so payment (dice roll * (10 if 2 utilities else 4)) is $" + e.getPayment());
+                "Number of utilities owned by owner is " + e.getUtility().getOwner().getNumOfUtilities() + ". so payment (dice roll * (10 if 2 utilities else 4)) is $" + e.getPayment()
+
+                +"\n(Người chơi: " + e.getPlayer().getPlayerName() + " đã dừng tại " + e.getUtility().getName() + " Thuộc sở hữu của " + e.getUtility().getOwner().getPlayerName() + ".\n" +
+                        "Số tiện ích thuộc chủ sở hữu là " + e.getUtility().getOwner().getNumOfUtilities() + ". Vì vậy thanh toán (lăn xúc xắc * (10 nếu 2 tiện ích khác thì 4)) là $" + e.getPayment() +")"
+        );
     }
 
     /**
@@ -434,7 +457,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void announceCannotBuyUtility(UtilityEvent e){
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " tried to buy " + e.getUtility().getName() + " but does not have enough Money, moving to the next player");
+        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " tried to buy " + e.getUtility().getName() + " but does not have enough money, Moving to the next player"
+        +"\n(Người chơi: " + e.getPlayer().getPlayerName() + " đang cố mua " + e.getUtility().getName() + " nhưng mà hong có đủ tiền, Chuyển sang người chơi tiếp theo)"
+        );
     }
 
     /**
@@ -444,7 +469,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void announcePurchaseOfUtility(UtilityEvent e) {
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " has purchased " + e.getUtility().getName());
+        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " has purchased " + e.getUtility().getName() +
+                        "\n(Người chơi: " + e.getPlayer().getPlayerName() + " đã mua thành công " + e.getUtility().getName() + ")"
+                );
     }
 
 
@@ -458,7 +485,8 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void FreeParking(FreeParkingEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
-        controller.sendMessage(this, e.getPlayer().getPlayerName() + " landed on free parking, they receive $" + e.getCenterMoney());
+        controller.sendMessage(this, e.getPlayer().getPlayerName() + " landed on free parking, they receive $" + e.getCenterMoney()
+        +"\n ("+ e.getPlayer().getPlayerName() + " đã được miễn phí đậu xe , nhận được $" + e.getCenterMoney() +")");
     }
 
     /**
@@ -469,7 +497,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void payTax(TaxEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
-        controller.sendMessage(this, e.getPlayer().getPlayerName() + " landed on " + e.getLocation().getName() + ", they lose $" + e.getLocation().getCost() + " which goes into the center money");
+        controller.sendMessage(this, e.getPlayer().getPlayerName() + " landed on " + e.getLocation().getName() + ", they lose $" + e.getLocation().getCost() + " which goes into the center money"
+         + "\n (" + e.getPlayer().getPlayerName() + " đã dừng tại " + e.getLocation().getName() + ", phải trả $" + e.getLocation().getCost() + " để xung vào công quỹ thành phố)"
+        );
     }
 
     /**
@@ -479,7 +509,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void visiting(LandOnJailEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
-        controller.sendMessage(this, e.getPlayer().getPlayerName() + " landed " + e.getLandOnJail().getName());
+        controller.sendMessage(this, e.getPlayer().getPlayerName() + " landed " + e.getLandOnJail().getName()
+        + "\n(" + e.getPlayer().getPlayerName() + " đã vô tù " + e.getLandOnJail().getName() + ")"
+        );
     }
 
 
@@ -490,7 +522,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void SendPlayerToJail(GoToJailEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
-        controller.sendMessage(this, e.getPlayer().getPlayerName() + " landed on Go To Jail, they go to jail.\nMoving to the next player");
+        controller.sendMessage(this, e.getPlayer().getPlayerName() + " landed on Go To Jail, they go to jail. Moving to the next player"
+        + "\n(phải vào tù thôi ,họ sẽ phải đi tù. Chuyển sang người chơi tiếp theo)"
+        );
         this.handlePlayerPieceMovement(e.getCurrentTurn(), e.getOldPos(), e.getNewPos());
     }
 
@@ -502,7 +536,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void FreePass(FreePassEvent e) {
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " Landed on a free pass, moving to the next player");
+        messageController.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " landed on a free pass, moving to the next player"
+        +"\n(Người chơi: " + e.getPlayer().getPlayerName() + " được lượt miễn phí, Chuyển sang người chơi tiếp theo)"
+        );
     }
 
 
@@ -515,7 +551,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void handleAnnounceBankruptedPlayer(Player p){
         ConfirmMessageController messageController = new ConfirmMessageController();
-        messageController.sendMessage(this, "Player: " + p.getPlayerName() + " has no more money. Removing player from game\nTheir properties are now back in estate!");
+        messageController.sendMessage(this, "Player: " + p.getPlayerName() + " has no more money. Removing player from game. Their properties are now back in estate!"
+        +  "\n(Người chơi: " + p.getPlayerName() + " không đủ khả năng chi trả. Xóa người chơi khỏi trò chơi Tài sản của họ hiện đã trở lại bất động sản!) "
+        );
     }
 
 
@@ -526,7 +564,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void handlePlayerQuit(BoardEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
-        controller.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " has quit the game. Removing player from game\nTheir properties are now back in estate!");
+        controller.sendMessage(this, "Player " + e.getPlayer().getPlayerName() + " has quit the game. Removing player from game \n Their properties are now back in estate!"
+        +"\n(Người chơi " + e.getPlayer().getPlayerName() + " đã thoát. Xóa người chơi khỏi trò chơi \nTài sản của họ hiện đã trở lại bất động sản)"
+        );
     }
 
     /**
@@ -536,7 +576,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void announcePlayerPass(BoardEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
-        controller.sendMessage(this, "Player " + e.getPlayer().getPlayerName() + " passed the turn. Moving to the next player.");
+        controller.sendMessage(this, "Player " + e.getPlayer().getPlayerName() + " passed the turn. Moving to the next player."
+        + " \n(Người chơi: " + e.getPlayer().getPlayerName() + " đã bỏ qua lượt này. Mời người chơi tiếp theo.)"
+        );
     }
 
     /**
@@ -547,10 +589,14 @@ public class BoardGUI extends JFrame implements BoardView{
     public void payJail(boolean payed, BoardEvent e){
         ConfirmMessageController controller = new ConfirmMessageController();
         if (payed){
-            controller.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " payed out of jail.");
+            controller.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " payed out of jail."
+            + "\n(Người chơi: " + e.getPlayer().getPlayerName() + " đã mua chuộc cảnh sát để ra tù sớm .)"
+            );
         }
         else{
-            controller.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " attempted to pay out of jail but could not due to financial issues.");
+            controller.sendMessage(this, "Player: " + e.getPlayer().getPlayerName() + " attempted to pay out of jail but could not due to financial issues."
+            +"\n(Người chơi: " + e.getPlayer().getPlayerName() + " cố gắng mua chuộc cảnh sát nhưng không thể vì vấn đề tài chính.)"
+            );
         }
     }
 
@@ -562,14 +608,20 @@ public class BoardGUI extends JFrame implements BoardView{
     public void handleResultsOfRollingInJail(BoardEvent e){
         ConfirmMessageController controller = new ConfirmMessageController();
         if (e.getDoubles()){
-            controller.sendMessage(this, e.getPlayer().getPlayerName() + " rolled a double! they are now out of jail and on the move!");
+            controller.sendMessage(this, e.getPlayer().getPlayerName() + " rolled a double! they are now out of jail and on the move!"
+            + "\n("+e.getPlayer().getPlayerName() + " đã tung được cú đúp! Bây giờ họ có thể ra tù và di chuyển)"
+            );
             return;
         }
         if (e.getPlayer().getTurnsInJail() != 0){
-            controller.sendMessage(this, e.getPlayer().getPlayerName() + " attempted to roll out of jail. They failed and now have " + e.getPlayer().getTurnsInJail() + " left in jail.\nMoving tothe next player");
+            controller.sendMessage(this, e.getPlayer().getPlayerName() + " attempted to roll out of jail. They failed and now have " + e.getPlayer().getTurnsInJail() + " left in jail. Moving tothe next player"
+            + "\n(" +e.getPlayer().getPlayerName() + " đang cố gắng trốn thoát khỏi tù. Thất bại" + e.getPlayer().getTurnsInJail() + ". Chuyển sang người chơi tiếp theo)"
+            );
         }
         else{
-            controller.sendMessage(this, e.getPlayer().getPlayerName() + " are now out of turns in jail, and now have to pay the $50 fine to get out.\nMoving to the next player");
+            controller.sendMessage(this, e.getPlayer().getPlayerName() + " are now out of turns in jail, and now have to pay the $50 fine to get out. Moving to the next player"
+            +"\n("+ e.getPlayer().getPlayerName() + "Hiện tại đã hết lượt trong tù, phải nộp phạt $50 để ra tù.  Chuyển sang người chơi tiếp theo)"
+            );
         }
     }
 
@@ -617,7 +669,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void announceReachingGo(BoardEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
-        controller.sendMessage(this, e.getPlayer().getPlayerName() + " received $" + BoardModel.GO_MONEY + " for reaching GO");
+        controller.sendMessage(this, e.getPlayer().getPlayerName() + " received $" + BoardModel.GO_MONEY + " for reaching GO"
+        + "\n("+e.getPlayer().getPlayerName() + " nhận $" + BoardModel.GO_MONEY + " để đạt GO )"
+        );
         this.handleUpdateSidePanelDisplay(e);
     }
 
@@ -666,7 +720,8 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void handleAnnounceWinner(BoardEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
-        controller.sendMessage(this, e.getPlayer().getPlayerName() + " wins the game\nThank you Playing\nExiting Program");
+        controller.sendMessage(this, e.getPlayer().getPlayerName() + " wins the game! Congrats"
+            + "\n(" +e.getPlayer().getPlayerName() + " đã thắng trò chơi! Chúc mừng bạn !)");
         System.exit(0);
     }
 
@@ -676,7 +731,9 @@ public class BoardGUI extends JFrame implements BoardView{
     @Override
     public void handleAnnounceRollingAgain(BoardEvent e) {
         ConfirmMessageController controller = new ConfirmMessageController();
-        controller.sendMessage(this, e.getPlayer().getPlayerName() + " Rolled a double. They get to roll again!");
+        controller.sendMessage(this, e.getPlayer().getPlayerName() + " Rolled a double. They get to roll again!"
+        + "\n("+ e.getPlayer().getPlayerName() + " Tung được cú đúp. Họ sẽ nhận thêm lượt tung ! )"
+        );
     }
 
     /**

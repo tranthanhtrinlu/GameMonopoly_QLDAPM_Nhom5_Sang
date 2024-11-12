@@ -12,10 +12,10 @@ import static org.junit.Assert.*;
 public class FreePassTest {
 
     /**
-     * Test to test the cost of the FreePass element.
+     * Kiểm tra chi phí của phần tử FreePass.
      */
     @Test
-    public void testCost(){
+    public void testCost() {
         FreePass free = new FreePass("Free Pass", 0);
         assertEquals(0, free.getCost());
     }

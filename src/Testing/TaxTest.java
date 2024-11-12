@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class TaxTest {
 
     /**
-     * Test to test the cost of the Tax element.
+     * Kiểm tra chi phí của phần tử Tax.
      */
     @Test
     public void testCost(){
