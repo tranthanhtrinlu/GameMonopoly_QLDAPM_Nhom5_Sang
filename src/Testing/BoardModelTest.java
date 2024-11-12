@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class BoardModelTest {
 
     /**
-     * Test to ensure that money is properly added to the center of the board.
+     * Kiểm tra để đảm bảo tiền được thêm vào trung tâm của bàn cờ.
      */
     @Test
     public void addToCenterMoney() {
@@ -25,7 +25,7 @@ public class BoardModelTest {
     }
 
     /**
-     * Test for the status update.
+     * Kiểm tra cập nhật trạng thái.
      */
     @Test
     public void testStatusUpdate() {
@@ -35,9 +35,8 @@ public class BoardModelTest {
         assertEquals(bm.getStatus(), BoardModel.Status.FINISHED);
     }
 
-
     /**
-     * test for loading US version
+     * Kiểm tra việc tải phiên bản Mỹ.
      * @throws IOException
      * @throws ParserConfigurationException
      * @throws SAXException
@@ -46,12 +45,11 @@ public class BoardModelTest {
     public void testLoadUSVersion() throws IOException, ParserConfigurationException, SAXException {
         BoardModel bm = new BoardModel();
         bm.initializeBoard("src/LoadXML/NewBoardModel.xml");
-        assertEquals(40,bm.getSizeOfBoard());
+        assertEquals(40, bm.getSizeOfBoard());
     }
 
-
     /**
-     * test for loading UK version
+     * Kiểm tra việc tải phiên bản Anh.
      * @throws IOException
      * @throws ParserConfigurationException
      * @throws SAXException
@@ -60,12 +58,12 @@ public class BoardModelTest {
     public void testLoadUKVersion() throws IOException, ParserConfigurationException, SAXException {
         BoardModel bm = new BoardModel();
         bm.initializeBoard("src/LoadXML/UKBoardModel.xml");
-        assertEquals(40,bm.getSizeOfBoard());
+        assertEquals(40, bm.getSizeOfBoard());
     }
 
     /**
-     * test for loading a saved file
-     * loading save file is generalized for any file for any version
+     * Kiểm tra việc tải file đã lưu.
+     * Việc tải file đã lưu có thể áp dụng cho bất kỳ file nào và phiên bản nào.
      * @throws ParserConfigurationException
      * @throws IOException
      * @throws SAXException
@@ -74,11 +72,11 @@ public class BoardModelTest {
     public void testLoadSavedFile() throws ParserConfigurationException, IOException, SAXException {
         BoardModel bm = new BoardModel();
         bm.loadSavedXML("src/SaveXML/testSavedFile.xml");
-        assertEquals(40,bm.getSizeOfBoard());
+        assertEquals(40, bm.getSizeOfBoard());
         assertEquals(5, bm.getNumOfPlayers());
-        assertEquals(3,bm.getCurrentTurn());
-        assertEquals(2,bm.getRoll1());
-        assertEquals(5,bm.getRoll2());
+        assertEquals(3, bm.getCurrentTurn());
+        assertEquals(2, bm.getRoll1());
+        assertEquals(5, bm.getRoll2());
         assertEquals(0, BoardModel.getCenterMoney());
         assertEquals(BoardModel.TypeOfBoards.US.getVersion(), bm.getGameVersion());
     }

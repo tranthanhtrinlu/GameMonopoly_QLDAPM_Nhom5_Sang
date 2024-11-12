@@ -8,12 +8,7 @@ public class UtilityEvent extends EventObject {
     private final Player player;
     private final int totalDiceRoll;
     private final int payment;
-    /**
-     * Constructs a prototypical Event.
-     *
-     * @param utility the object on which the Event initially occurred
-     * @throws IllegalArgumentException if source is null
-     */
+
     public UtilityEvent(Utility utility, Player p, int totalDiceRoll, int payment) {
         super(utility);
         this.player = p;
@@ -22,7 +17,7 @@ public class UtilityEvent extends EventObject {
     }
 
     /**
-    * Method for getting the total dice roll
+    * Tính tổng điểm xúc xắc
     * @return An integer totalDiceRoll
     */
     public int getTotalDiceRoll() {
@@ -30,7 +25,7 @@ public class UtilityEvent extends EventObject {
     }
 
     /**
-    * Method for getting the player
+    * Lấy người chơi
     * @return A MVC.Player player
     */
     public Player getPlayer() {
@@ -38,7 +33,7 @@ public class UtilityEvent extends EventObject {
     }
 
     /**
-    * Method for getting a utility element
+    * Lấy ra phần tử tiện ích
     * @return A MVC.Utility
     */
     public Utility getUtility(){
@@ -46,7 +41,7 @@ public class UtilityEvent extends EventObject {
     }
 
     /**
-    * Java method for getting a source
+    * Java method for lấy object java
     */
     @Override
     public Object getSource() {
@@ -54,7 +49,7 @@ public class UtilityEvent extends EventObject {
     }
 
     /**
-     * Getter for the payment.
+     * Getter lấy tiền chi trả
      * @return An integer payment.
      */
     public int getPayment() {

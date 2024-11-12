@@ -14,7 +14,7 @@ public class RailRoadTest {
 
 
     /**
-     * Tests the buy() method.
+     * Kiểm thử phương thức buy().
      */
     @Test
     public void testBuy() {
@@ -24,11 +24,10 @@ public class RailRoadTest {
         player.setMoneyAmount(100);
         railRoad.buy(player);
         assertEquals(0, player.getNumOfRailroads());
-
     }
 
     /**
-     * Tests the resetOwner() method.
+     * Kiểm thử phương thức resetOwner().
      */
     @Test
     public void testResetOwner() {
