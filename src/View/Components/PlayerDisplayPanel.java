@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 
 /**
- * Player displays side panel which always tracks the state of each player for every view
- * @author Tony Massaad
+ * Người chơi hiển thị bảng điều khiển bên cạnh, luôn theo dõi trạng thái của từng người chơi cho mọi chế độ xem
+ * @author Phuc Thanh
  */
 public class PlayerDisplayPanel extends JPanel {
     private final static String CURRENT_TURN = "(Playing)";
@@ -20,7 +20,7 @@ public class PlayerDisplayPanel extends JPanel {
     private final ArrayList<JPanel> playerDisplays;
 
     /**
-     * default constructor for PlayerDisplayPanel
+     * Hàm tạo mặc định cho PlayerDisplayPanel
      */
     public PlayerDisplayPanel(){
         this.playerButtons = new ArrayList<>();
@@ -30,8 +30,8 @@ public class PlayerDisplayPanel extends JPanel {
     }
 
     /**
-     * will add the new player buttons to view location, money, properties
-     * @param p Player current playing
+     * Thêm nút người chơi mới vào vị trí hiển thị, tiền và tài sản
+     * @param p Người chơi hiện tại
      * @param index Integer
      */
     public void addNewPlayerViewButton(Player p, int index){
@@ -69,9 +69,9 @@ public class PlayerDisplayPanel extends JPanel {
     }
 
     /**
-     * removes the player view
-     * @param i Integer, index of player
-     * @param p Player being removed
+     * Xóa chế độ xem của người chơi
+     * @param i Số nguyên, chỉ số của người chơi
+     * @param p Người chơi bị xóa
      */
     public void removePlayerView(int i, Player p){
         JPanel panel = this.playerDisplays.get(i);
@@ -83,9 +83,9 @@ public class PlayerDisplayPanel extends JPanel {
     }
 
     /**
-     * updates players display to get updated infomation on money,location, properties
-     * @param index Integer
-     * @param p Player the player being updated
+     * Cập nhật hiển thị của người chơi để lấy thông tin mới về tiền, vị trí, tài sản
+     * @param index Số nguyên
+     * @param p Người chơi đang được cập nhật
      */
     public void updatePlayerDisplay(int index, Player p) {
         JPanel panel = this.playerDisplays.get(index);
@@ -103,10 +103,10 @@ public class PlayerDisplayPanel extends JPanel {
     }
 
     /**
-     * updates the current turn that is being played
-     * @param currentTurn Integer of the current turn
-     * @param index Integer
-     * @param p Player
+     * Cập nhật lượt chơi hiện tại đang được thực hiện
+     * @param currentTurn Số nguyên, lượt chơi hiện tại
+     * @param index Số nguyên
+     * @param p Người chơi
      */
     public void updateCurrentTurn(int currentTurn, int index, Player p){
         String[] text = this.playerButtons.get(index).getText().split(" ");
@@ -134,9 +134,9 @@ public class PlayerDisplayPanel extends JPanel {
     }
 
     /**
-     * Adds player contents to specific panel
-     * @param panel JPanel, the panel
-     * @param p Player, the player
+     * Thêm nội dung của người chơi vào bảng điều khiển cụ thể
+     * @param panel JPanel, bảng điều khiển
+     * @param p Người chơi, người chơi
      */
     private void addToPanel(JPanel panel, Player p){
         JLabel moneyLabel = new JLabel("Money: $" + p.getMoneyAmount());

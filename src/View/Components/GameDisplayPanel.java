@@ -1,19 +1,17 @@
 package View.Components;
-
 import Model.BoardModel;
 import Model.GamePlayer.Player;
 import Model.GamePlayer.User;
 import View.Components.GamePhotosComponents.BoardGetterFunctionality;
-//import View.Components.GamePhotosComponents.UKBoard;
+import View.Components.GamePhotosComponents.UKBoard;
 import View.Components.GamePhotosComponents.USBoard;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
 /**
  * GameDisplayPanel for the BoardGUI
- * @author Tony Massaad
+ * @author Phuc Thanh
  */
 public class GameDisplayPanel extends JPanel {
     private final static int DIM1 = 96;
@@ -41,7 +39,7 @@ public class GameDisplayPanel extends JPanel {
 
     /**
      * Constructor
-     * @param version String, the game version
+     * @param version String, phiên bản trò chơi
      */
     public GameDisplayPanel(String version){
         BoardGetterFunctionality board = getBoard(version);
@@ -69,18 +67,18 @@ public class GameDisplayPanel extends JPanel {
     }
 
     /**
-     * get the board images according to the version of the game
-     * @param version String, the board version
-     * @return BoardGetterFunctionality, the board
+     * Lấy hình ảnh của bàn chơi theo phiên bản của trò chơi
+     * @param version Chuỗi, phiên bản của bàn chơi
+     * @return BoardGetterFunctionality, bàn chơi
      */
     private BoardGetterFunctionality getBoard(String version){
         if (version.equals(BoardModel.TypeOfBoards.US.getVersion()))
             return new USBoard();
-        return new USBoard();
+        return new UKBoard();
     }
 
     /**
-     * sets the starting position for images in the top
+     * Thiết lập vị trí bắt đầu cho các hình ảnh ở phía trên
      */
     private void setTopImages(){
         int  xPos = BOARD_START_TOP_X_POS;
@@ -114,7 +112,7 @@ public class GameDisplayPanel extends JPanel {
     }
 
     /**
-     * sets the starting positions for images in the middle-left
+     * Thiết lập vị trí bắt đầu cho các hình ảnh ở giữa bên trái
      */
     private void setMiddleLeftImages(){
         int yPos = BOARD_START_MIDDLE_LEFT_RIGHT_Y_POS;
@@ -144,7 +142,7 @@ public class GameDisplayPanel extends JPanel {
     }
 
     /**
-     * sets the starting positions for images in the bottom
+     * Thiết lập vị trí bắt đầu cho các hình ảnh ở bên dưới
      */
     private void setBottomImages(){
         int xPos = BOARD_START_TOP_X_POS;
@@ -183,7 +181,7 @@ public class GameDisplayPanel extends JPanel {
     }
 
     /**
-     * sets images in there starting positions for middle
+     * Thiết lập các hình ảnh ở vị trí bắt đầu cho khu vực giữa
      */
     private void setMiddleRightImages(){
         int xPos = BOARD_START_RIGHT_X_POS + BOARD_START_TOP_X_POS;
@@ -209,12 +207,12 @@ public class GameDisplayPanel extends JPanel {
     }
 
     /**
-     * add the starting players that will be playing the game
-     * @param num Integer amount of players
-     * @param numberOfPlayers Integer, the total number of players
+     * Thêm người chơi ban đầu sẽ tham gia trò chơi
+     * @param num Số nguyên, số lượng người chơi
+     * @param numberOfPlayers Số nguyên, tổng số người chơi
      */
     public void addInitialPlayers(int num, int numberOfPlayers){
-        String s = "P"+(num+1);
+        String s = "Player "+(num+1);
         if (num >= numberOfPlayers){
             int j = num - numberOfPlayers;
             s = "AI"+(j+1);
@@ -223,15 +221,15 @@ public class GameDisplayPanel extends JPanel {
     }
 
     /**
-     * Load in the player state to the game
-     * @param p Player, the player
-     * @param num Integer amount of players
-     * @param numberOfPlayers Integer, the total number of players
+     * Tải trạng thái người chơi vào trò chơi
+     * @param p Người chơi, đối tượng người chơi
+     * @param num Số nguyên, số lượng người chơi
+     * @param numberOfPlayers Số nguyên, tổng số người chơi
      */
     public void loadInPlayers(Player p, int num, int numberOfPlayers){
         String s;
         if (p instanceof User){
-            s = "P"+(num+1);
+            s = p.getPlayerName() +(num+1);
         }else{
             int j = num - numberOfPlayers;
             s = "AI"+(j+1);
@@ -240,14 +238,14 @@ public class GameDisplayPanel extends JPanel {
     }
 
     /**
-     * add the player to the board according to the data collected and the index of the player
-     * @param index Integer, the Player's index relative to its turn
-     * @param position Integer, the player's position
-     * @param name String, the Player's name on the board
+     * Thêm người chơi vào bảng theo dữ liệu đã thu thập và chỉ số của người chơi
+     * @param index Số nguyên, chỉ số của người chơi tương ứng với lượt chơi của họ
+     * @param position Số nguyên, vị trí của người chơi
+     * @param name Chuỗi, tên người chơi trên bảng
      */
     private void addPlayerPieceOnBoard(int index, int position, String name){
         this.playerPieces.add(new JLabel(name));
-        this.playerPieces.get(index).setBorder(BorderFactory.createLineBorder(Color.RED, 2));
+        this.playerPieces.get(index).setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
         this.playerPieces.get(index).setFont(new Font("Verdana", Font.BOLD, 12));
         this.playerPieces.get(index).setForeground(Color.BLACK);
         this.playerPiecesDisplay.get(position).add(this.playerPieces.get(index));
@@ -256,10 +254,10 @@ public class GameDisplayPanel extends JPanel {
 
 
     /**
-     * will move the image of a players piece across the board
-     * @param currentPlayer Player currently moving
-     * @param oldPlayerPosition the starting position of the player
-     * @param playerPosition the ending position of the player
+     * Di chuyển hình ảnh của quân cờ người chơi trên bảng
+     * @param currentPlayer Người chơi hiện tại đang di chuyển
+     * @param oldPlayerPosition Vị trí bắt đầu của người chơi
+     * @param playerPosition Vị trí kết thúc của người chơi
      */
     public void movePieceImage(int currentPlayer, int oldPlayerPosition, int playerPosition){
         this.playerPiecesDisplay.get(oldPlayerPosition).remove(this.playerPieces.get(currentPlayer));
@@ -271,9 +269,9 @@ public class GameDisplayPanel extends JPanel {
     }
 
     /**
-     * will remove the players piece form the board
-     * @param currentPlayer player that is currently being removed
-     * @param playerPosition position of the player
+     * Xóa quân cờ của người chơi khỏi bảng
+     * @param currentPlayer Người chơi hiện tại đang bị xóa
+     * @param playerPosition Vị trí của người chơi
      */
     public void removePieceFromBoard(int currentPlayer, int playerPosition){
         JLabel currentLabel = this.playerPieces.get(currentPlayer);
