@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * class for obtaining photos for board version US
- * @author Tony Massaad
+ * lớp để lấy hình ảnh cho phiên bản bảng Mỹ
+ * @author Phuc Thanh
  */
 public class USBoard implements BoardGetterFunctionality{
 
     /**
-     * get the top images of the respective board
-     * @return ArrayList<Image>, a list of top images
+     * lấy các hình ảnh phía trên của bảng tương ứng
+     * @return ArrayList<Image>, danh sách các hình ảnh phía trên
      */
     @Override
     public ArrayList<Image> getTopPhotos(){
@@ -33,8 +33,8 @@ public class USBoard implements BoardGetterFunctionality{
     }
 
     /**
-     * get the left images of the respective board
-     * @return ArrayList<Image>, a list of left images
+     * lấy các hình ảnh bên trái của bảng tương ứng
+     * @return ArrayList<Image>, danh sách các hình ảnh bên trái
      */
     @Override
     public ArrayList<Image> getLeftPhotos(){
@@ -52,8 +52,8 @@ public class USBoard implements BoardGetterFunctionality{
     }
 
     /**
-     * get the right images of the respective board
-     * @return ArrayList<Image>, a list of right images
+     * lấy các hình ảnh bên phải của bảng tương ứng
+     * @return ArrayList<Image>, danh sách các hình ảnh bên phải
      */
     @Override
     public ArrayList<Image> getRightPhotos(){
@@ -71,8 +71,8 @@ public class USBoard implements BoardGetterFunctionality{
     }
 
     /**
-     * get the bottom images of the respective board
-     * @return ArrayList<Image>, a list of bottom images
+     * lấy các hình ảnh dưới cùng của bảng tương ứng
+     * @return ArrayList<Image>, danh sách các hình ảnh dưới cùng
      */
     @Override
     public ArrayList<Image> getBottomPhotos(){
@@ -92,8 +92,8 @@ public class USBoard implements BoardGetterFunctionality{
     }
 
     /**
-     * get the horizontal bar of the board that separates two images
-     * @return Image, the horizontal bar
+     * lấy thanh ngang của bảng phân cách hai hình ảnh
+     * @return Image, thanh ngang
      */
     @Override
     public Image getHorizontalLine(){
@@ -101,8 +101,8 @@ public class USBoard implements BoardGetterFunctionality{
     }
 
     /**
-     * get the vertical bar of the board that separates two images
-     * @return Image, the vertical bar
+     * lấy thanh dọc của bảng phân cách hai hình ảnh
+     * @return Image, thanh dọc
      */
     @Override
     public Image getVerticalLine(){

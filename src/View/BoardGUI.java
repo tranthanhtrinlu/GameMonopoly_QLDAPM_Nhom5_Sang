@@ -18,8 +18,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * BoardGUI Class, also known as the boardView class
- * @author Tony Massaad, Max Curkovic, Kareem, Cory Helm
+ * Lớp BoardGUI, còn được gọi là lớp boardView
+ * @author Phuc Thanh
  */
 public class BoardGUI extends JFrame implements BoardView{
     public final static int GAME_WIDTH = 985;
@@ -37,7 +37,7 @@ public class BoardGUI extends JFrame implements BoardView{
     private JLabel dice1, dice2;
 
     /**
-     * default constructor for BoardGUI
+     * Hàm khởi tạo mặc định cho BoardGUI
      */
     public BoardGUI(){
         super("Monopoly");
@@ -91,7 +91,7 @@ public class BoardGUI extends JFrame implements BoardView{
 
 
     /**
-     * reset the frame
+     * đặt lại khung (frame)
      */
     private void resetFrame(){
         this.getContentPane().removeAll();
@@ -101,7 +101,7 @@ public class BoardGUI extends JFrame implements BoardView{
 
 
     /**
-     * creates the main menu panel with new game, load game, quit
+     * tạo bảng menu chính với các lựa chọn: trò chơi mới, tải trò chơi, thoát
      * @param model BoardModel
      */
     private void mainMenu(BoardModel model) {
@@ -122,7 +122,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * gives the player choice between US and UK versions of the game
+     * cho người chơi lựa chọn giữa phiên bản trò chơi Mỹ và Anh
      * @param model BoardModel
      */
     private void playerBoardChoice(BoardModel model){
@@ -149,10 +149,10 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * adds panels to the menu
-     * @param topButton top button
-     * @param middleButton middle button
-     * @param bottomButton bottom button
+     * thêm các bảng vào menu
+     * @param topButton nút trên cùng
+     * @param middleButton nút ở giữa
+     * @param bottomButton nút dưới cùng
      */
     private void addToMenuPanels(JButton topButton, JButton middleButton, JButton bottomButton) {
         JPanel buttonPanel = new JPanel(new BorderLayout());
@@ -182,8 +182,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * creates a new game after the version is selected
-     * @param initialCost Int of starting money
+     * tạo một trò chơi mới sau khi phiên bản được chọn
+     * @param initialCost Số tiền bắt đầu dưới dạng số nguyên
      * @param model BoardModel
      */
     private void initializeNewGame(String version, int initialCost, BoardModel model) throws ParserConfigurationException, SAXException, IOException {
@@ -213,8 +213,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Load a game from a save file
-     * @param model the board model
+     * Tải trò chơi từ một tệp đã lưu
+     * @param model mô hình bảng
      * @throws IOException
      * @throws SAXException
      * @throws ParserConfigurationException
@@ -242,10 +242,10 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * add version and rolls to game
-     * @param version String, the version of the game
-     * @param dice1 int, dice 1
-     * @param dice2 int, dice 2
+     * Thêm phiên bản và kết quả của xúc xắc vào trò chơi
+     * @param version String, phiên bản của trò chơi
+     * @param dice1 int, kết quả của xúc xắc 1
+     * @param dice2 int, kết quả của xúc xắc 2
      */
     private void addToGame(String version, int dice1, int dice2){
         this.gamePanel = new GameDisplayPanel(version);
@@ -277,8 +277,8 @@ public class BoardGUI extends JFrame implements BoardView{
     //****BEGINNING OF PROPERTY FUNCTIONS**//
 
     /**
-     * Overridden method to handle a property with no owner. A player can either pass on or buy a property.
-     * If bought, give player choices to purchase houses.
+     * Phương thức ghi đè để xử lý một tài sản không có chủ sở hữu. Người chơi có thể chọn bỏ qua hoặc mua tài sản.
+     * Nếu mua, cung cấp cho người chơi các lựa chọn để mua nhà.
      * @param e A Events.PropertyEvent e.
      */
     @Override
@@ -289,8 +289,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method to handle a property already owned by a player.
-     * Can either buy houses/hotels or pass.
+     * Phương thức ghi đè để xử lý một tài sản đã có chủ sở hữu.
+     * Người chơi có thể chọn mua nhà/khách sạn hoặc bỏ qua.
      * @param e A Events.PropertyEvent e.
      */
     @Override
@@ -302,8 +302,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method to handle a property owned by a player not currently on their turn.
-     * If the player does not have enough money to pay rent, they are bankrupted.
+     * Phương thức ghi đè để xử lý một tài sản đã có chủ sở hữu nhưng không phải lượt của người chơi đó.
+     * Nếu người chơi không có đủ tiền để trả tiền thuê, họ sẽ bị phá sản.
      * @param e A Events.PropertyEvent e.
      */
     @Override
@@ -317,7 +317,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * announcement that the player cannot buy a property
+     * Thông báo rằng người chơi không thể mua tài sản.
      */
     @Override
     public void announceCannotBuy(PropertyEvent e){
@@ -329,8 +329,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * announcement that the player purchased the property
-     * @param e PropertyEvent, the property event
+     * Thông báo rằng người chơi đã mua tài sản
+     * @param e PropertyEvent, sự kiện tài sản
      */
     @Override
     public void announcePurchaseProperty(PropertyEvent e){
@@ -347,7 +347,7 @@ public class BoardGUI extends JFrame implements BoardView{
     //** BEGINNING OF RAIL ROAD IMPLEMENTATION **//
 
     /**
-     * Overridden method to handle a railroad with no owner. A player can either pass on or buy a property.
+     * Phương thức ghi đè để xử lý một tuyến đường sắt không có chủ sở hữu. Người chơi có thể bỏ qua hoặc mua tài sản.
      * @param e A Events.RailRoadEvent e.
      */
     @Override
@@ -358,7 +358,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Method to handle a railroad that a player who owns it lands on.
+     * Phương thức để xử lý một tuyến đường sắt mà người chơi sở hữu khi họ dừng lại trên đó.
      * @param e A Events.RailRoadEvent e.
      */
     @Override
@@ -369,8 +369,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method to handle a railroad owned by a player not currently on their turn.
-     * If the player does not have enough money to pay rent, they are bankrupted.
+     * Phương thức ghi đè để xử lý một tuyến đường sắt đã được sở hữu bởi người chơi không phải lượt của họ.
+     * Nếu người chơi không đủ tiền để trả tiền thuê, họ sẽ bị phá sản.
      * @param e A Events.RailRoadEvent e.
      */
     @Override
@@ -384,8 +384,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method to announce that the player cannot afford a railroad
-     * @param e RailRoadEvent, the event occurring in the RailRoad
+     * Phương thức ghi đè để thông báo rằng người chơi không thể đủ tiền để mua một tuyến đường sắt
+     * @param e RailRoadEvent, sự kiện xảy ra trong RailRoad
      */
     @Override
     public void announceCannotBuyRailRoad(RailRoadEvent e){
@@ -396,8 +396,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method to announce that the player purchased a railroad
-     * @param e RailRoadEvent, the event occurring in the RailRoad
+     * Phương thức ghi đè để thông báo rằng người chơi đã mua một tuyến đường sắt
+     * @param e RailRoadEvent, sự kiện xảy ra trong RailRoad
      */
     @Override
     public void announcePurchaseRailRoad(RailRoadEvent e){
@@ -412,7 +412,7 @@ public class BoardGUI extends JFrame implements BoardView{
     //** BEGINNING OF UTILITY IMPLEMENTATION **//
 
     /**
-     * Overridden method to handle a utility with no owner. A player can either pass on or buy a property.
+     * Phương thức ghi đè để xử lý một tiện ích không có chủ sở hữu. Người chơi có thể bỏ qua hoặc mua tài sản.
      * @param e A Events.UtilityEvent e.
      */
     @Override
@@ -423,7 +423,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Method to handle a utility that a player who owns it lands on.
+     * Phương thức để xử lý một tiện ích mà người chơi sở hữu khi họ hạ cánh lên đó.
      * @param e A Events.UtilityEvent e.
      */
     @Override
@@ -435,8 +435,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method to handle a utility owned by a player not currently on their turn.
-     * If the player does not have enough money to pay rent, they are bankrupted.
+     * Phương thức ghi đè để xử lý một tiện ích đã được sở hữu bởi người chơi không phải lượt của họ.
+     * Nếu người chơi không có đủ tiền để trả tiền thuê, họ sẽ bị phá sản.
      * @param e A Events.UtilityEvent e.
      */
     @Override
@@ -451,7 +451,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method to announce that a player cannot afford a utility
+     * Phương thức ghi đè để thông báo rằng người chơi không đủ tiền để chi trả cho một tiện ích.
      * @param e A Events.UtilityEvent e.
      */
     @Override
@@ -463,7 +463,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method to announce that a player has purchased a utility
+     * Phương thức ghi đè để thông báo rằng người chơi đã mua một tiện ích.
      * @param e A Events.UtilityEvent e.
      */
     @Override
@@ -478,8 +478,8 @@ public class BoardGUI extends JFrame implements BoardView{
     // ** END OF UTILITY IMPLEMENTATION **
 
     /**
-     * Overridden method for handling free parking.
-     * If a player lands here they get the money in the "center" of the board.
+     * Phương thức ghi đè để xử lý ô "Đỗ xe miễn phí".
+     * Nếu người chơi dừng ở đây, họ sẽ nhận được số tiền ở "trung tâm" của bàn chơi.
      * @param e A Events.Tax_FreeParkingEvent event.
      */
     @Override
@@ -490,8 +490,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method for handling the payment of tax.
-     * If player runs out of money, they will go bankrupt.
+     * Phương thức ghi đè để xử lý việc thanh toán thuế.
+     * Nếu người chơi hết tiền, họ sẽ bị phá sản.
      * @param e A Events.Tax_FreeParkingEvent event.
      */
     @Override
@@ -503,7 +503,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method for handling "Just Visiting".
+     * Phương thức ghi đè để xử lý "Chỉ Thăm".
      * @param e A Events.LandOnJailEvent event.
      */
     @Override
@@ -516,7 +516,7 @@ public class BoardGUI extends JFrame implements BoardView{
 
 
     /**
-     * Overridden method for sending a player to jail.
+     * Phương thức ghi đè để đưa người chơi vào tù.
      * @param e Events.GoToJailEvent e.
      */
     @Override
@@ -530,7 +530,7 @@ public class BoardGUI extends JFrame implements BoardView{
 
 
     /**
-     * Overridden method for handling a free pass. These replace the Chance + Community Chest as placeholders on the board.
+     * Phương thức ghi đè để xử lý thẻ miễn phí. Những thẻ này thay thế các thẻ Chance và Community Chest làm các thẻ giữ chỗ trên bàn chơi.
      * @param e Events.FreePassEvent event.
      */
     @Override
@@ -545,7 +545,7 @@ public class BoardGUI extends JFrame implements BoardView{
     /* HANDLES */
 
     /**
-     * Announces a players bankruptcy and removal form the game
+     * Thông báo việc một người chơi phá sản và bị loại khỏi trò chơi.
      * @param p Player, the player who is bankrupt
      */
     @Override
@@ -558,7 +558,7 @@ public class BoardGUI extends JFrame implements BoardView{
 
 
     /**
-     * Overridden method for handling the player quit.
+     * Phương thức ghi đè để xử lý khi người chơi thoát game.
      * @param e A Events.BoardEvent e.
      */
     @Override
@@ -570,7 +570,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method for handling the announcement of a player passing the turn.
+     * Phương thức ghi đè để xử lý thông báo người chơi qua lượt.
      * @param e A Events.BoardEvent e.
      */
     @Override
@@ -582,7 +582,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden boolean method for handling the payment in jail.
+     * Phương thức boolean ghi đè để xử lý việc thanh toán khi ở tù.
      * @param e A Events.BoardEvent e.
      */
     @Override
@@ -601,7 +601,7 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Button handle for rolling doubles to get out of jail
+     * Xử lý nút để tung xúc xắc đôi nhằm ra khỏi tù.
      * @param e BoardEvent, the BoardEvent
      */
     @Override
@@ -626,7 +626,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * handles the choice to buy houses
+     * Xử lý lựa chọn mua nhà.
+
      * @param e BoardEvent, the event occurring in the BoardModel
      */
     @Override
@@ -636,7 +637,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * handle the choice to sell houses
+     * Xử lý lựa chọn bán nhà.
+
      * @param e BoardEvent, the event occurring in the BoardModel
      */
     @Override
@@ -646,7 +648,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * disable or enable the buttons
+     * Vô hiệu hóa hoặc kích hoạt các nút.
+
      * @param b boolean, true to enable otherwise false
      */
     @Override
@@ -664,7 +667,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Overridden method that announces when a player has reached GO!.
+     * Phương thức ghi đè thông báo khi một người chơi đã đến GO!.
+
      */
     @Override
     public void announceReachingGo(BoardEvent e) {
@@ -677,7 +681,7 @@ public class BoardGUI extends JFrame implements BoardView{
 
 
     /**
-     * handle the next turn of the player according to the view
+     * Xử lý lượt tiếp theo của người chơi theo giao diện.
      * @param e BoardEvent, the BoardEvent
      */
     @Override
@@ -688,7 +692,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * handle the update of the side panel for each player in a view
+     * Xử lý việc cập nhật bảng điều khiển bên cho mỗi người chơi trong giao diện.
+
      * @param e BoardEvent, the board event
      */
     @Override
@@ -702,7 +707,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * handle the piece display on the board for each player in a view
+     * Xử lý việc hiển thị quân cờ trên bảng cho mỗi người chơi trong giao diện.
+
      * @param currentTurn Integer, the current turn
      * @param oldPos Integer, the old position
      * @param position Integer, the new position
@@ -714,8 +720,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Handle the announcement of the winner if there is a winner
-     * if winner, send message and end game.
+     * Xử lý việc thông báo người chiến thắng nếu có người chiến thắng.
+     * Nếu có người chiến thắng, gửi thông báo và kết thúc trò chơi.
      */
     @Override
     public void handleAnnounceWinner(BoardEvent e) {
@@ -726,7 +732,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * announce that the current player rolled a double to every view
+     * Thông báo rằng người chơi hiện tại đã tung được đôi cho tất cả các view.
+
      */
     @Override
     public void handleAnnounceRollingAgain(BoardEvent e) {
@@ -737,9 +744,9 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * update the dice rolls on the board
-     * @param roll1 Integer, the first roll
-     * @param roll2 Integer, the second roll
+     * Cập nhật kết quả gieo xúc xắc trên bảng.
+     * @param roll1 Integer, kết quả gieo xúc xắc thứ nhất
+     * @param roll2 Integer, kết quả gieo xúc xắc thứ hai
      */
     @Override
     public void handleUpdateRoll(int roll1, int roll2) {
@@ -748,8 +755,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Handles the removal of a player piece from the board
-     * @param e BoardEvent, the event occurring in the board
+     * Xử lý việc loại bỏ quân cờ của người chơi khỏi bảng.
+     * @param e BoardEvent, sự kiện xảy ra trên bảng
      */
     @Override
     public void handleRemoveOfPlayerPiece(BoardEvent e){
@@ -757,8 +764,8 @@ public class BoardGUI extends JFrame implements BoardView{
     }
 
     /**
-     * Handles the removal of a player view from the board
-     * @param e BoardEvent, the event occurring in the BoardModel
+     * Xử lý việc loại bỏ view của người chơi khỏi bảng.
+     * @param e BoardEvent, sự kiện xảy ra trong BoardModel
      */
     @Override
     public void handleRemoveOfPlayerView(BoardEvent e){
@@ -767,8 +774,8 @@ public class BoardGUI extends JFrame implements BoardView{
 
 
     /**
-     * Update panel according to the views
-     * @param player Player, the current player
+     * Cập nhật bảng điều khiển theo các view.
+     * @param player Player, người chơi hiện tại
      */
     @Override
     public void updateChoicePanel(Player player) {

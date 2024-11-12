@@ -1,7 +1,6 @@
 package View.Controllers;
-
-import Model.BoardElements.Property;
 import Model.GamePlayer.Player;
+import Model.BoardElements.Property;
 
 import javax.swing.*;
 import java.awt.*;

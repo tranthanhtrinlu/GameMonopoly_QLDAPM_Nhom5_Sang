@@ -1,9 +1,8 @@
 package View.Controllers;
-
 import Model.BoardModel;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
  * BoardController that handles the input of the current player choice.

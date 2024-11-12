@@ -2,16 +2,16 @@ package View.Controllers;
 import javax.swing.*;
 
 /**
- * User input message controller for when they land on a location
- * @author Kareem El-Hajjar
+ * Điều khiển đầu vào của người dùng khi họ vào một vị trí
+ * @author Phuc Thanh
  */
 public class LocationController {
 
     /**
-     * to tell the player what property they landed on and cost
+     * Thông báo cho người chơi biết họ đã dừng lại ở tài sản nào và chi phí
      * @param frame JFrame
-     * @param name String name of property
-     * @param cost Integer cost of the property
+     * @param name Tên của tài sản
+     * @param cost Giá trị của tài sản
      * @return frame
      */
     public int LocationNoOwnerController(JFrame frame, String name, int cost){

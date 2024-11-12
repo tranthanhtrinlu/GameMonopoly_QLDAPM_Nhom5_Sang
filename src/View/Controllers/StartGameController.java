@@ -30,7 +30,7 @@ public class StartGameController {
             addingToPanel(panel, num, group, i, i+2, PLAYER);
         }
         JOptionPane.showConfirmDialog(frame, panel,
-                "number of players", JOptionPane.DEFAULT_OPTION);
+                "Number of players", JOptionPane.DEFAULT_OPTION);
         return num.get();
     }
 
