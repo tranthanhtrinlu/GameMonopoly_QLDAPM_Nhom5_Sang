@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 public class GoToJailTest {
 
     /**
-     * Test to test the cost of the GoToJail element.
+     * Kiểm tra chi phí của phần tử GoToJail.
      */
     @Test
     public void testCost(){

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class UtilityTest {
 
     /**
-     * Tests the buy() method.
+     * Kiểm thử phương thức buy().
      */
     @Test
     public void testBuy() {
@@ -27,7 +27,7 @@ public class UtilityTest {
     }
 
     /**
-     * Tests the resetOwner() method.
+     * Kiểm thử phương thức resetOwner().
      */
     @Test
     public void testResetOwner() {
@@ -40,7 +40,7 @@ public class UtilityTest {
     }
 
     /**
-     * Tests the payment() method only for a utility.
+     * Kiểm thử phương thức payment() chỉ dành cho một tiện ích (utility).
      */
     @Test
     public void testPayment() {
@@ -49,6 +49,6 @@ public class UtilityTest {
         player1.setMoneyAmount(100);
         utility.buy(player1);
         assertEquals(28, utility.payment(7));
-
     }
+
 }

@@ -10,14 +10,13 @@ import static org.junit.Assert.*;
 
 /**
  * @author Max Curkovic
- * All required tests for the Player abstract class.
- * Note that User and AI are extended from this class.
+ * Tất cả các kiểm thử cần thiết cho lớp trừu tượng Player.
+ * Lưu ý rằng User và AI được kế thừa từ lớp này.
  */
 public class PlayerTest {
 
-
     /**
-     * Tests getting the property by name.
+     * Kiểm tra lấy tài sản theo tên.
      */
     @Test
     public void testGetPropertyByName() {
@@ -28,7 +27,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests getting the number of properties of a player.
+     * Kiểm tra lấy số lượng tài sản của người chơi.
      */
     @Test
     public void testGetNumOfProperties() {
@@ -39,7 +38,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests getting a certain property using the index in the list.
+     * Kiểm tra lấy tài sản theo chỉ số trong danh sách.
      */
     @Test
     public void testGetPropertyByIndex() {
@@ -50,7 +49,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests getting the number of colored properties owned by the player.
+     * Kiểm tra số lượng tài sản màu sắc mà người chơi sở hữu.
      */
     @Test
     public void testNumberOfColoredPropertiesOwned() {
@@ -63,7 +62,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests setting the player in jail.
+     * Kiểm tra việc đưa người chơi vào tù.
      */
     @Test
     public void testSetInJail() {
@@ -73,7 +72,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests adding the property to the list of player properties.
+     * Kiểm tra việc thêm tài sản vào danh sách tài sản của người chơi.
      */
     @Test
     public void testAddProperty() {
@@ -84,7 +83,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests adding a color to a property.
+     * Kiểm tra việc thêm màu vào tài sản.
      */
     @Test
     public void testAddColorToProperty() {
@@ -94,7 +93,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests whether a player is bankrupt.
+     * Kiểm tra xem người chơi có bị phá sản hay không.
      */
     @Test
     public void testBankrupted() {
@@ -106,7 +105,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests the addition of railroads to the player's list of owned properties.
+     * Kiểm tra việc thêm đường sắt vào danh sách tài sản của người chơi.
      */
     @Test
     public void testAddNumOfRailroads() {
@@ -116,7 +115,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests the addition of utilities to the player's list of owned properties.
+     * Kiểm tra việc thêm tiện ích vào danh sách tài sản của người chơi.
      */
     @Test
     public void testAddNumOfUtilities() {
@@ -126,7 +125,7 @@ public class PlayerTest {
     }
 
     /**
-     * Tests the player's jail payment.
+     * Kiểm tra việc trả tiền để ra khỏi tù của người chơi.
      */
     @Test
     public void testPayJail() {
