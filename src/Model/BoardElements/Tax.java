@@ -11,8 +11,8 @@ import org.w3c.dom.Node;
 import java.util.ArrayList;
 
 /**
+ * @author Tran Quang Vu
  * Lớp cho phần tử Thuế trên bảng
- * @author TQV aka QuangVx
  */
 public class Tax extends Location{
 
@@ -71,7 +71,7 @@ public class Tax extends Location{
     }
 
     /**
-     * Không làm gì cả
+     * Reset lại chủ sở hữu ô này
      */
     @Override
     public void resetOwner() {

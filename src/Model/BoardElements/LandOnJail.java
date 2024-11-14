@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author TQV aka QuangVx
+ * @author Tran Quang Vu
  * Lớp MVC.LandOnJail để định nghĩa một phần tử MVC.LandOnJail
  */
 public class LandOnJail extends Location {

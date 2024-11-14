@@ -9,7 +9,7 @@ import java.util.Objects;
  * Lớp để lấy các hình ảnh của bảng phiên bản UK
  * @author Phuc Thanh
  */
-public class UKBoard implements BoardGetterFunctionality{
+public class VietnameseBoard implements BoardGetterFunctionality{
 
     /**
      * Lấy các hình ảnh ở phía trên của bảng tương ứng

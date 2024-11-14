@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @author TQV aka QuangVx
+ * @author Tran Quang Vu
  * Class MVC.Property that defines a property. Extends MVC.Location
  */
 public class Property extends Location implements BuyableLocation {
