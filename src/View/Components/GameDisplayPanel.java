@@ -3,7 +3,7 @@ import Model.BoardModel;
 import Model.GamePlayer.Player;
 import Model.GamePlayer.User;
 import View.Components.GamePhotosComponents.BoardGetterFunctionality;
-import View.Components.GamePhotosComponents.UKBoard;
+import View.Components.GamePhotosComponents.VietnameseBoard;
 import View.Components.GamePhotosComponents.USBoard;
 import javax.swing.*;
 import java.awt.*;
@@ -74,7 +74,7 @@ public class GameDisplayPanel extends JPanel {
     private BoardGetterFunctionality getBoard(String version){
         if (version.equals(BoardModel.TypeOfBoards.US.getVersion()))
             return new USBoard();
-        return new UKBoard();
+        return new VietnameseBoard();
     }
 
     /**
