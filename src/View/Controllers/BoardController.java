@@ -1,20 +1,19 @@
 package View.Controllers;
-
 import Model.BoardModel;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 /**
- * BoardController that handles the input of the current player choice.
- * @author Max Curkovic
+ * BoardController xử lý các lựa chọn đầu vào của người chơi hiện tại.
+ * @author Phuc Thanh
  */
 public class BoardController implements ActionListener {
 
     private final BoardModel model;
 
     /**
-     * constructor for boardController
+     * Constructor cho BoardController
      * @param model BoardModel
      */
     public BoardController(BoardModel model){
@@ -22,8 +21,8 @@ public class BoardController implements ActionListener {
     }
 
     /**
-     * The Action Event for when a certain button is pressed according to the command of the button
-     * @param e ActionEvent, the ActionEvent
+     * Xử lý ActionEvent khi một nút nhất định được nhấn theo lệnh của nút
+     * @param e ActionEvent, sự kiện ActionEvent
      */
     @Override
     public void actionPerformed(ActionEvent e) {

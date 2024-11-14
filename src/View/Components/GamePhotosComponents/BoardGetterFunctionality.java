@@ -3,44 +3,44 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Interface for common implementation of the getters for board photos
+ * Giao diện cho việc triển khai chung các phương thức getter cho hình ảnh của bảng
  * @author Tony Massaad
  */
 public interface BoardGetterFunctionality {
 
     /**
-     * get the top images of the respective board
-     * @return ArrayList<Image>, a list of top images
+     * Lấy các hình ảnh ở phía trên của bảng tương ứng
+     * @return ArrayList<Image>, danh sách các hình ảnh phía trên
      */
     ArrayList<Image> getTopPhotos();
 
     /**
-     * get the left images of the respective board
-     * @return ArrayList<Image>, a list of left images
+     * Lấy các hình ảnh ở phía bên trái của bảng tương ứng
+     * @return ArrayList<Image>, danh sách các hình ảnh phía bên trái
      */
     ArrayList<Image> getLeftPhotos();
 
     /**
-     * get the bottom images of the respective board
-     * @return ArrayList<Image>, a list of bottom images
+     * Lấy các hình ảnh ở phía dưới của bảng tương ứng
+     * @return ArrayList<Image>, danh sách các hình ảnh phía dưới
      */
     ArrayList<Image> getBottomPhotos();
 
     /**
-     * get the right images of the respective board
-     * @return ArrayList<Image>, a list of right images
+     * Lấy các hình ảnh ở phía bên phải của bảng tương ứng
+     * @return ArrayList<Image>, danh sách các hình ảnh phía bên phải
      */
     ArrayList<Image> getRightPhotos();
 
     /**
-     * get the horizontal bar of the board that separates two images
-     * @return Image, the horizontal bar
+     * Lấy thanh ngang của bảng phân tách hai hình ảnh
+     * @return Image, thanh ngang
      */
     Image getHorizontalLine();
 
     /**
-     * get the vertical bar of the board that separates two images
-     * @return Image, the vertical bar
+     * Lấy thanh dọc của bảng phân tách hai hình ảnh
+     * @return Image, thanh dọc
      */
     Image getVerticalLine();
 }

@@ -7,20 +7,20 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Controller for intro to the game
- * mainly for getting the number of players and their names
- * @author Tony Massaad and Cory Helm
+ * Bộ điều khiển cho phần giới thiệu trò chơi
+ * chủ yếu để lấy số lượng người chơi và tên của họ
+ * Tác giả: Phuc Thanh
  */
 public class StartGameController {
 
 
-    private final static String PLAYER = " Players";
+    private final static String PLAYER = " Người chơi";
     private final static String AI_PLAYER = " AI";
 
     /**
-     * gets the current number of players in the game
+     * lấy số lượng người chơi hiện tại trong trò chơi
      * @param frame JFrame
-     * @return Integer of number of players
+     * @return Số nguyên của số lượng người chơi
      */
     public int getNumOfPlayers(JFrame frame) {
         JPanel panel = new JPanel(new GridLayout(4,1));
@@ -30,23 +30,23 @@ public class StartGameController {
             addingToPanel(panel, num, group, i, i+2, PLAYER);
         }
         JOptionPane.showConfirmDialog(frame, panel,
-                "number of players", JOptionPane.DEFAULT_OPTION);
+                "Số lượng người chơi", JOptionPane.DEFAULT_OPTION);
         return num.get();
     }
 
     /**
-     * gets the name of all the players in the game
-     * Does not exit until all names according to num are filled
-     * @param num Integer num of players
+     * lấy tên của tất cả người chơi trong trò chơi
+     * Không thoát ra cho đến khi tất cả tên theo số lượng người chơi được điền
+     * @param num Số nguyên của số lượng người chơi
      * @param frame JFrame
-     * @return array of names
+     * @return mảng tên
      */
     public ArrayList<String> getNameOfPlayers(int num, JFrame frame) {
         ArrayList<JTextField> names = new ArrayList<>();
         ArrayList<String> nameText = new ArrayList<>();
         JPanel myPanel = new JPanel(new GridLayout(num,2));
         for (int i = 0; i<num; i++){
-            myPanel.add(new JLabel("Name " + (i+1) + ":"));
+            myPanel.add(new JLabel("Tên " + (i+1) + ":"));
             names.add(new JTextField());
             myPanel.add(Box.createHorizontalStrut(15));
             myPanel.add(names.get(i));
@@ -54,7 +54,7 @@ public class StartGameController {
         while (true){
             boolean stay = true;
             int result = JOptionPane.showConfirmDialog(frame, myPanel,
-                    "Enter Info", JOptionPane.DEFAULT_OPTION);
+                    "Nhập thông tin", JOptionPane.DEFAULT_OPTION);
             if (result == 0){
                 for (int i = 0; i < num; i++) {
                     if (names.get(i).getText().equals("")){
@@ -73,10 +73,10 @@ public class StartGameController {
     }
 
     /**
-     * get the choice of the number of AI
-     * @param frame JFrame, the frame
-     * @param numberOfPlayers Integer, the number of players
-     * @return Integer, the number of AIs
+     * lấy lựa chọn về số lượng AI
+     * @param frame JFrame, khung
+     * @param numberOfPlayers Số nguyên, số lượng người chơi
+     * @return Số nguyên, số lượng AI
      */
     public int getNumOfAIs(JFrame frame, int numberOfPlayers) {
         int numOfAIs = (BoardModel.MAX_PLAYERS) - numberOfPlayers;
@@ -87,18 +87,18 @@ public class StartGameController {
             addingToPanel(panel, num, group, i, i, AI_PLAYER);
         }
         JOptionPane.showConfirmDialog(frame, panel,
-                "Enter Number of AIs", JOptionPane.DEFAULT_OPTION);
+                "Nhập số lượng AI", JOptionPane.DEFAULT_OPTION);
         return num.get();
     }
 
     /**
-     * Add to the choice panel for the viewer to choose from
-     * @param panel JPanel, the panel
-     * @param num AtomicInteger, the val to set the choice
-     * @param group ButtonGroup, group the radio buttons
-     * @param actualVal Integer, the value index in which the button is at
-     * @param theoreticalVal Integer, the value index on what to set the num and button text to
-     * @param name String, the name. AI if AI otherwise PLAYER
+     * Thêm vào bảng tùy chọn để người xem lựa chọn
+     * @param panel JPanel, bảng
+     * @param num AtomicInteger, giá trị để thiết lập lựa chọn
+     * @param group ButtonGroup, nhóm các nút radio
+     * @param actualVal Số nguyên, giá trị chỉ số mà nút nằm ở
+     * @param theoreticalVal Số nguyên, giá trị chỉ số để thiết lập num và văn bản nút
+     * @param name Chuỗi, tên. AI nếu là AI, nếu không là NGƯỜI CHƠI
      */
     private void addingToPanel(JPanel panel, AtomicInteger num, ButtonGroup group, int actualVal, int theoreticalVal, String name){
         JRadioButton button = new JRadioButton(theoreticalVal + name);
