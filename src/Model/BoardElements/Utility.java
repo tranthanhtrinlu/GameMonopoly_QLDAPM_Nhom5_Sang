@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @author Kareem El-Hajjar, Max Curkovic
+ * @author Tran Quang Vu
  * Lớp MVC.Utility cho phần tử tiện ích
  */
 public class Utility extends Location implements BuyableLocation {

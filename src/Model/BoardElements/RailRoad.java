@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @author TQV aka QuangVx
+ * @author Tran Quang Vu
  * Lớp Railroad định nghĩa một phần tử đường ray. Kế thừa từ MVC.Location
  */
 public class RailRoad extends Location implements BuyableLocation {
