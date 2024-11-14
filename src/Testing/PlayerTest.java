@@ -4,7 +4,8 @@ import Model.BoardElements.Property;
 import Model.BoardElements.RailRoad;
 import Model.BoardModel;
 import Model.GamePlayer.User;
-import org.testng.annotations.Test;
+import org.junit.Test;
+
 
 import static org.junit.Assert.*;
 
