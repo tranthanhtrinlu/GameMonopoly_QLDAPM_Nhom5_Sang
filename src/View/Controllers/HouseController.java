@@ -9,20 +9,20 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * @author Max, Kareem, Tony and Cory
- * Class HouseController for controlling the purchase and selling of houses.
+ * @author Max, Kareem, Tony và Cory
+ * Lớp HouseController để kiểm soát việc mua và bán nhà.
  */
 public class HouseController {
     private final static boolean SELL_HOUSE = false;
     private final static boolean BUY_HOUSE = true;
 
     /**
-     * Method for buying houses.
-     * @param frame A JFrame frame.
-     * @param p Player, the current player
+     * Phương thức mua nhà.
+     * @param frame JFrame.
+     * @param p Player, người chơi hiện tại
      */
     public void buyHouses(JFrame frame, Player p){
-        List<Property> listProperties = p.getEstatePropertiesOfPlayer(); // always has one
+        List<Property> listProperties = p.getEstatePropertiesOfPlayer(); // luôn có ít nhất một
         List<String> options = new ArrayList<>();
         for(Property pr: listProperties){
             if (pr.getNumOfHouses() != pr.getMaxNumberOfHouses()){
@@ -32,14 +32,13 @@ public class HouseController {
         handlePanelOfBuyOrSellHouses(BUY_HOUSE, listProperties, options, p, frame);
     }
 
-
     /**
-     * Method for selling houses.
-     * @param frame A JFrame frame.
-     * @param p Player, the current player
+     * Phương thức bán nhà.
+     * @param frame JFrame.
+     * @param p Player, người chơi hiện tại
      */
     public void sellHouses(JFrame frame, Player p){
-        List<Property> listProperties = p.getEstatePropertiesOfPlayer(); // always has one
+        List<Property> listProperties = p.getEstatePropertiesOfPlayer(); // luôn có ít nhất một
         List<String> options = new ArrayList<>();
         for(Property pr: listProperties){
             if (pr.getNumOfHouses() != 0){
@@ -50,12 +49,12 @@ public class HouseController {
     }
 
     /**
-     * create the panel for buy or sell houses accordingly, depending on the choice
-     * @param choice boolean, true if buy houses otherwise false
-     * @param listProperties List<Property>, a list of player properties
-     * @param options List<String> list of player properties as strings respective to listProperties
-     * @param p Player, the player
-     * @param frame JFrame, the frame
+     * Tạo bảng điều khiển để mua hoặc bán nhà tùy thuộc vào lựa chọn.
+     * @param choice boolean, true nếu mua nhà, ngược lại false
+     * @param listProperties List<Property>, danh sách tài sản của người chơi
+     * @param options List<String> danh sách tên tài sản tương ứng với listProperties
+     * @param p Player, người chơi
+     * @param frame JFrame, khung
      */
     private void handlePanelOfBuyOrSellHouses(boolean choice, List<Property> listProperties, List<String> options, Player p, JFrame frame){
         JPanel panel = new JPanel(new GridLayout(2,2));
@@ -74,26 +73,26 @@ public class HouseController {
     }
 
     /**
-     * method for getting the result of choice
-     * @param choice boolean, true if buy houses otherwise false
-     * @param place AtomicReference, Property place of player choice
-     * @param num AtomicInteger, int value of player choice
-     * @param p Player, the player
-     * @param frame JFrame, the frame
+     * Phương thức để lấy kết quả của lựa chọn
+     * @param choice boolean, true nếu mua nhà, ngược lại false
+     * @param place AtomicReference, tài sản của người chơi
+     * @param num AtomicInteger, giá trị lựa chọn của người chơi
+     * @param p Player, người chơi
+     * @param frame JFrame, khung
      */
     private void getResultOfChoice(boolean choice, AtomicReference<Property> place, AtomicReference<JComboBox> num, JFrame frame, Player p){
         if (choice == BUY_HOUSE){
             place.get().addHouse((int) num.get().getSelectedItem());
-            JOptionPane.showMessageDialog(frame, "Player: " + p.getPlayerName() + " purchased " + num.get().getSelectedItem() + " houses for " + place.get().getName());
+            JOptionPane.showMessageDialog(frame, "Người chơi: " + p.getPlayerName() + " đã mua " + num.get().getSelectedItem() + " nhà cho " + place.get().getName());
             return;
         }
         place.get().sellHouse((int) num.get().getSelectedItem());
-        JOptionPane.showMessageDialog(frame, "Player: " + p.getPlayerName() + " sold " + num.get().getSelectedItem() + " houses on " + place.get().getName());
+        JOptionPane.showMessageDialog(frame, "Người chơi: " + p.getPlayerName() + " đã bán " + num.get().getSelectedItem() + " nhà trên " + place.get().getName());
     }
 
     /**
-     * Method for getting the list of integer choices for buying and selling houses
-     * @return A List of integers lst.
+     * Phương thức lấy danh sách các lựa chọn mua hoặc bán nhà.
+     * @return Danh sách các số nguyên lst.
      */
     private List<Integer> getLst(int val){
         List<Integer> lst = new ArrayList<>();
@@ -104,19 +103,19 @@ public class HouseController {
     }
 
     /**
-     * Method for updating the panel.
-     * @param panel A JPanel panel.
-     * @param selectedItem A String selectedItem.
-     * @param place An Atomic reference to a Property place.
-     * @param num An Atomic reference to a JComboBox num.
-     * @param choice A Boolean choice.
-     * @param houses A JComboBox houses.
+     * Phương thức cập nhật bảng điều khiển.
+     * @param panel JPanel.
+     * @param selectedItem Chuỗi đã chọn.
+     * @param place Tham chiếu đến tài sản.
+     * @param num Tham chiếu đến JComboBox num.
+     * @param choice Boolean lựa chọn.
+     * @param houses JComboBox houses.
      */
     private void updatePanel (JPanel panel, String selectedItem, AtomicReference<Property> place, AtomicReference<JComboBox> num, boolean choice, Player p, JComboBox houses){
         place.set(p.getPropertyByName(selectedItem));
         num.set(new JComboBox(getBuyOrSellChoices(choice, place)));
         panel.removeAll();
-        panel.add(new JLabel("Property: "));
+        panel.add(new JLabel("Tài sản: "));
         panel.add(houses);
         panel.add(new JLabel(getText(choice, place)));
         panel.add(num.get());
@@ -124,10 +123,10 @@ public class HouseController {
     }
 
     /**
-     * Method for getting the buy or sell choices of the player.
-     * @param choice A boolean choice.
-     * @param place An atomic reference to a property place.
-     * @return A List of choices.
+     * Phương thức để lấy các lựa chọn mua hoặc bán của người chơi.
+     * @param choice Boolean lựa chọn.
+     * @param place Tham chiếu đến tài sản.
+     * @return Danh sách các lựa chọn.
      */
     private Object[] getBuyOrSellChoices(boolean choice, AtomicReference<Property> place){
         if(choice == BUY_HOUSE){
@@ -136,34 +135,31 @@ public class HouseController {
         return getLst(place.get().getNumOfHouses()).toArray();
     }
 
-
     /**
-     * Method for returning a get text string.
-     * @param choice A Boolean choice.
-     * @param place An atomic reference to a property place.
-     * @return A string statement.
+     * Phương thức trả về chuỗi thông báo.
+     * @param choice Boolean lựa chọn.
+     * @param place Tham chiếu đến tài sản.
+     * @return Chuỗi thông báo.
      */
     private String getText(boolean choice, AtomicReference<Property> place){
         if(choice == BUY_HOUSE){
-            return "<html>Number houses added to current (" + place.get().getNumOfHouses() +" of " + place.get().getMaxNumberOfHouses() + "): <br>(Cost per house is $" + place.get().getCostPerHouse() + ")</html>";
+            return "<html>Số nhà được thêm vào hiện tại (" + place.get().getNumOfHouses() +" của " + place.get().getMaxNumberOfHouses() + "): <br>(Chi phí mỗi nhà là $" + place.get().getCostPerHouse() + ")</html>";
         }
-        return "<html>Number of houses " + place.get().getNumOfHouses() + ": <br>(profit per house is $" + place.get().getCostPerHouse() + ")</html>";
+        return "<html>Số nhà hiện có " + place.get().getNumOfHouses() + ": <br>(lợi nhuận mỗi nhà là $" + place.get().getCostPerHouse() + ")</html>";
     }
 
     /**
-     * Method for adding to the panel.
-     * @param panel A JPanel panel.
-     * @param place An atomic reference to a property place.
-     * @param num An atomic reference to a JComboBox num.
-     * @param houses A JComboBox houses.
-     * @param choice A boolean choice.
+     * Phương thức để thêm vào bảng điều khiển.
+     * @param panel JPanel.
+     * @param place Tham chiếu đến tài sản.
+     * @param num Tham chiếu đến JComboBox num.
+     * @param houses JComboBox houses.
+     * @param choice Boolean lựa chọn.
      */
     private void addToPanel(JPanel panel, AtomicReference<Property> place, AtomicReference<JComboBox> num, JComboBox houses, boolean choice){
-        panel.add(new JLabel("Property: "));
+        panel.add(new JLabel("Tài sản: "));
         panel.add(houses);
         panel.add(new JLabel(getText(choice, place)));
         panel.add(num.get());
     }
 }
-
-
