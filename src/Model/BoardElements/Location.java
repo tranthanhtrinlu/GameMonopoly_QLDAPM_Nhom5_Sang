@@ -4,7 +4,7 @@ import Listener.BoardView;
 import Model.GamePlayer.Player;
 
 /**
- * @author Max Curkovic
+ * @author Tran Quang Vu
  * Lớp trừu tượng MVC.Location mô tả chung về một vị trí trên bảng.
  * Lưu ý rằng một số phương thức trừu tượng này sẽ không thực hiện trong các phần tử cụ thể, vì chúng không phải là tài sản "thực" có thể sở hữu hoặc mua.
  */

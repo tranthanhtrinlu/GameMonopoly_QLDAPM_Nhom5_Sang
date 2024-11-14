@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author TQV aka QuangVx
+ * @author Tran Quang Vu
  * Lớp MVC.GoToJail để định nghĩa một phần tử MVC.GoToJail. Kế thừa từ MVC.Location.
  */
 public class GoToJail extends Location{
@@ -19,7 +19,7 @@ public class GoToJail extends Location{
     private final List<GoToJailListener> goToJailListener;
 
     /**
-     * Constructor cho phần tử Bảng Đi Tù
+     * Constructor cho phần tử Ô Tù
      * @param name String, tên
      * @param cost Integer, chi phí
      */
@@ -47,7 +47,7 @@ public class GoToJail extends Location{
     }
 
     /**
-     * Phương thức toString của Java
+     * Phương thức toString thông báo 1 người dùng chuyển sang ô tù
      * @param p Một người chơi p
      * @return Một câu chuỗi mô tả người chơi đang dừng tại MVC.GoToJail
      */
@@ -57,7 +57,7 @@ public class GoToJail extends Location{
     }
 
     /**
-     * Không làm gì cho lớp này
+     * Trả về false không mua
      */
     @Override
     public boolean buy(Player p) {
@@ -65,7 +65,7 @@ public class GoToJail extends Location{
     }
 
     /**
-     * Không làm gì cho lớp này
+     * Reset lại ô này
      */
     @Override
     public void resetOwner() {

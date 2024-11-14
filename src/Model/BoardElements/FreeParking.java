@@ -11,7 +11,7 @@ import org.w3c.dom.Node;
 import java.util.ArrayList;
 
 /**
- * @author TQV aka QuangVX
+ * @author Tran Quang Vu
  * Lớp MVC.FreeParking để mô tả một phần tử Free Parking (Ô dừng của trò chơi).
  */
 public class FreeParking extends Location{
@@ -59,7 +59,7 @@ public class FreeParking extends Location{
     }
 
     /**
-     * Không làm gì cho lớp này.
+     * trả về false nếu không mua ô
      */
     @Override
     public boolean buy(Player p) {
@@ -67,7 +67,7 @@ public class FreeParking extends Location{
     }
 
     /**
-     * Không làm gì cho lớp này.
+     * Thiết lập lại chủ sở hữu của 1 ô
      */
     @Override
     public void resetOwner() {}

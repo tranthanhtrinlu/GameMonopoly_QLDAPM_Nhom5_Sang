@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author TQV aka QuangVx
+ * @author Tran Quang Vu
  * Lớp MVC.FreePass để mô tả một phần tử Free Pass.
  */
 public class FreePass extends Location {
@@ -63,7 +63,7 @@ public class FreePass extends Location {
     }
 
     /**
-     * Không làm gì cho lớp này.
+     * Phương thức này để reset lại chủ sở hữu.
      */
     @Override
     public void resetOwner() {
